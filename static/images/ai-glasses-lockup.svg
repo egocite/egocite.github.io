@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 88" role="img" aria-labelledby="title desc">
+  <title id="title">EgoCITE smart glasses</title>
+  <desc id="desc">Open blue smart glasses with a yellow AI sparkle.</desc>
+  <path d="M18 43 5 37M126 43l13-6" fill="none" stroke="#1452a3" stroke-width="7" stroke-linecap="round"/>
+  <rect x="16" y="33" width="47" height="37" rx="13" fill="#eef5fc" stroke="#1452a3" stroke-width="6"/>
+  <rect x="81" y="33" width="47" height="37" rx="13" fill="#eef5fc" stroke="#1452a3" stroke-width="6"/>
+  <path d="M63 45c6-6 12-6 18 0" fill="none" stroke="#1452a3" stroke-width="6" stroke-linecap="round"/>
+  <path d="M35 47h11M40.5 41.5v11" fill="none" stroke="#68a9ee" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="40.5" cy="47" r="3.5" fill="#f2bf49"/>
+  <path d="M112 3c0 10-5 15-15 15 10 0 15 5 15 15 0-10 5-15 15-15-10 0-15-5-15-15Z" fill="#f2bf49" stroke="#7b5200" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>

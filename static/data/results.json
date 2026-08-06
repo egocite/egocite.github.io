@@ -1,0 +1,53 @@
+{
+  "radar": {
+    "EgoLifeQA": {
+      "categories": ["Entity Log", "Event Recall", "Habit Insight", "Relation Map", "Task Master"],
+      "range": [30, 75],
+      "step": 15,
+      "series": {
+        "EgoCITE-GPT": [67.4, 59.5, 64.3, 65.6, 71.4],
+        "WorldMM-GPT": [46.9, 44.4, 53.6, 55.4, 56.9],
+        "VideoRAG": [46.5, 39.3, 58.5, 51.5, 57.5],
+        "A-MEM": [46.7, 41.7, 44.3, 43.1, 37.2],
+        "EgoRAG": [34.4, 31.8, 34.4, 41.0, 33.2]
+      }
+    },
+    "EgoMem": {
+      "categories": ["Single Event", "Multi Event", "Event Detail", "Time Query"],
+      "range": [35, 90],
+      "step": 15,
+      "series": {
+        "EgoCITE-GPT": [82.3, 80.3, 86.7, 66.7],
+        "WorldMM-GPT": [74.2, 64.6, 80.4, 51.4],
+        "VideoRAG": [77.0, 70.7, 83.3, 41.0],
+        "A-MEM": [58.9, 61.6, 65.4, 48.6],
+        "EgoRAG": [63.3, 57.6, 70.4, 45.5]
+      }
+    }
+  },
+  "tradeoff": {
+    "pricing": {
+      "short": { "input": 1, "output": 6 },
+      "long": { "input": 2, "output": 9 }
+    },
+    "points": [
+      { "method": "EgoCITE-GPT (5 rounds)", "latency": 32.0, "accuracy": 63.8, "inputTokens": 31670, "outputTokens": 2073, "pricing": "short", "group": "ours" },
+      { "method": "EgoCITE-GPT (1 round)", "latency": 15.15, "accuracy": 58.7, "inputTokens": 9288, "outputTokens": 743, "pricing": "short", "group": "ours" },
+      { "method": "GPT-5.4 agent", "latency": 32.5, "accuracy": 54.9, "inputTokens": 783123, "outputTokens": 2826, "pricing": "long", "group": "long-context" },
+      { "method": "VideoRAG", "latency": 26.4, "accuracy": 46.5, "inputTokens": 21100, "outputTokens": 3162, "pricing": "short", "group": "agentic" },
+      { "method": "WorldMM-GPT", "latency": 46.8, "accuracy": 49.6, "inputTokens": 71801, "outputTokens": 2327, "pricing": "short", "group": "agentic" },
+      { "method": "A-MEM", "latency": 9.6, "accuracy": 42.9, "inputTokens": 1598, "outputTokens": 805, "pricing": "short", "group": "agentic" },
+      { "method": "EgoRAG", "latency": 10.6, "accuracy": 34.3, "inputTokens": 15914, "outputTokens": 525, "pricing": "short", "group": "agentic" }
+    ]
+  },
+  "horizon": {
+    "days": [1, 2, 3, 4, 5, 6, 7],
+    "series": {
+      "EgoCITE-GPT": [67.08, 65.71, 64.66, 64.26, 63.64, 62.85, 62.77],
+      "GPT-5.4 agent": [69.06, 66.01, 60.52, 59.36, 58.05, 56.72, 57.21],
+      "Gemini-3.1-Pro agent": [63.90, 65.07, 63.39, 61.46, 61.05, 60.47, 60.31],
+      "WorldMM-GPT": [52.57, 52.00, 50.09, 49.59, 49.62, 49.10, 49.63],
+      "VideoRAG": [48.05, 47.43, 46.91, 46.73, 46.81, 46.24, 46.51]
+    }
+  }
+}

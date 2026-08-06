@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EgoCITE | Long-Horizon Egocentric Memory</title>
+  <meta name="description" content="EgoCITE is a long-horizon agentic memory framework for egocentric QA that couples context-augmented indexing with time-aware retrieval.">
+  <meta name="robots" content="noindex">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="EgoCITE: Context-Augmented Indexing and Time-Aware Retrieval for Long-Horizon Egocentric Memory">
+  <meta property="og:description" content="EgoCITE is a long-horizon agentic memory framework for egocentric QA that couples context-augmented indexing with time-aware retrieval.">
+  <meta property="og:image" content="static/images/overview.png?v=2">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#1452a3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="static/images/ai-glasses-icon.svg?v=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="static/images/ai-glasses-icon-32.png?v=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="static/images/ai-glasses-icon-180.png?v=1">
+  <link rel="stylesheet" href="static/css/site.css?v=5">
+</head>
+<body>
+  <!--
+  THESIS: EgoCITE is presented as a rigorous academic system whose contribution and evidence are legible before decoration.
+  OWN-WORLD: Restrained scholarly typography, blue-and-yellow method identity, smart-glasses mark, ruled data fields, and the paper's real figures.
+  STORY: Identity and headline evidence lead into the overview, abstract, failures, method, experiments, grounded traces, and citation.
+  FIRST VIEWPORT: Compact project identity, supported result rail, and the full EgoCITE overview figure.
+  FORM: Figure First composition, conventional academic project-page world, direction seed 80bd77dc.
+  FINISH: Unreviewed and undocumented is unfinished; this build ends with the finish review, verdict, and DESIGN.md.
+  -->
+  <main>
+    <header class="publication-header">
+      <div class="container wide">
+        <div class="publication-title-mark" aria-label="EgoCITE"><img class="publication-title-icon" src="static/images/ai-glasses-lockup.svg?v=1" width="144" height="88" alt=""><span class="project-name">Ego<span class="blue">C</span>I<span class="yellow">T</span>E</span></div>
+        <h1 class="publication-title">Context-Augmented Indexing and Time-Aware Retrieval for Long-Horizon Egocentric Memory</h1>
+        <div class="publication-authors">Anonymous authors</div>
+        <div class="publication-venue">Paper under double-blind review</div>
+        <div class="publication-links">
+          <span class="paper-button primary disabled" aria-disabled="true" title="arXiv link coming soon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>
+            Paper (arXiv soon)
+          </span>
+          <span class="paper-button disabled" aria-disabled="true" title="Code release coming soon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></svg>
+            Code (soon)
+          </span>
+          <a class="paper-button" href="#results">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V9M10 19V5M16 19v-7M22 19V2"/></svg>
+            Results
+          </a>
+          <a class="paper-button" href="#bibtex" title="View the temporary BibTeX entry">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg>
+            BibTeX
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="result-strip" aria-label="Headline results">
+      <div class="container wide">
+        <p class="result-grid"><svg class="result-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19V2"/><path d="m3 8 6-4 6 5 7-7"/></svg><span class="result-stat"><strong>+4.4–14.2%</strong> accuracy</span><span class="result-separator" aria-hidden="true">·</span><span class="result-stat"><strong>+15.1–22.7%</strong> retrieval hit rate over agentic memory baselines</span><span class="result-separator" aria-hidden="true">·</span><span class="result-stat"><strong>36×</strong> lower cost than the GPT-5.4 agent</span></p>
+      </div>
+    </section>
+
+
+    <section class="teaser">
+      <div class="container wide">
+        <figure class="teaser-figure">
+          <a class="teaser-frame" href="static/images/overview.png?v=2" target="_blank" rel="noreferrer">
+            <img src="static/images/overview.png?v=2" alt="Overview of EgoCITE, from multimodal perception through context-augmented memory construction and time-aware retrieval to response." width="1825" height="792">
+          </a>
+          <span class="mobile-figure-note">Swipe to inspect the pipeline · Tap for full resolution</span>
+          <figcaption><b>Figure 1.</b> Overview of the pipeline: (1) Multimodal perception &amp; caption generation, (2) Context-augmented atomic memory construction, (3) Time-aware atomic memory index retrieval, and (4) Reasoning &amp; response. Click the figure for full resolution.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="abstract">
+      <div class="container wide">
+        <h2 class="section-title">Abstract</h2>
+        <div class="body-copy">
+          <p>Long-horizon egocentric memory transforms continuous first-person video and audio into a searchable record of past experiences. We demonstrate two bottlenecks in existing systems: indices built from context-poor captions are unreliable for agentic search, while retrieval ignores a question's temporal intent. To address both bottlenecks, we introduce <span class="mono">EgoCITE</span> (Egocentric Context-augmented Indexing and Time-aware Evidence retrieval), a long-horizon agentic memory framework for egocentric QA. <span class="mono">EgoCITE</span> comprises three components. <span class="mono">EgoScheme</span> uses local multimodal context to turn fragmentary video captions and speech transcripts into self-contained atomic memory indices. <span class="mono">EgoIndex</span> organizes complementary action, activity, utterance, and conversation representations into searchable multi-view memory indices at multiple granularities. <span class="mono">EgoRetrv</span> combines semantic search with question-conditioned temporal relevance scoring and curation of retrieved evidence. We evaluate <span class="mono">EgoCITE</span> on EgoLifeQA, EgoMem, and EgoR1-Bench in terms of answer accuracy and target-event retrieval alignment. <span class="mono">EgoCITE</span> improves accuracy over agentic memory baselines by at least 4.4–14.2% while achieving 36× lower cost than long-context LLM agents.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="motivation">
+      <div class="container wide">
+        <h2 class="section-title">Motivations</h2>
+        <p class="section-subtitle">We evaluate existing long-horizon egocentric memory systems and identify two fundamental limitations.</p>
+        <div class="container flush">
+          <div class="two-column">
+            <article class="insight">
+              <h3>Insight 1: Long-horizon egocentric agentic search is limited by what is indexed.</h3>
+              <p>Memory indices are typically built directly from short, independently generated memory entries, such as captions and speech transcripts. These entries often omit the local context needed to identify people, objects, actions, and elliptical utterances, making relevant experiences difficult for an agent to retrieve. Context omitted from memory entries before indexing remains unavailable to downstream agentic search.</p>
+              <div class="insight-stat">10.1% <small>of 92,131 WorldMM triples contain unresolved references</small></div>
+            </article>
+            <article class="insight">
+              <h3>Insight 2: Retrieval must model temporal intent in addition to semantic relevance.</h3>
+              <p>Memory recall questions are inherently temporal, expressing recency (“last time”), habits (“usually”), or explicit time (“yesterday afternoon”). Existing systems nonetheless rank by semantic similarity and treat time as passive metadata, so the top-k fills with semantically plausible but temporally wrong evidence.</p>
+              <div class="insight-stat">&gt;76% / 48% <small>of EgoLifeQA / EgoMem questions contain temporal intent</small></div>
+            </article>
+          </div>
+        </div>
+        <figure class="paper-figure">
+          <a href="static/images/failure-case.png" target="_blank" rel="noreferrer"><img src="static/images/failure-case.png" alt="Failure cases in existing memory construction and retrieval systems." width="1772" height="874" loading="lazy"></a>
+          <figcaption><b>Figure 2.</b> The workflow and failure cases of existing memory construction and retrieval approaches.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="container wide">
+        <h2 class="section-title">Methodology</h2>
+        <p class="section-subtitle">EgoCITE integrates context-augmented atomic memory index construction, multi-view egocentric memory indexing, and time-aware retrieval of atomic memory indices.</p>
+        <div class="method-grid" role="tablist" aria-label="Select a methodology component">
+          <button class="method-card" id="method-tab-index" type="button" role="tab" data-method-control="index" aria-selected="true" aria-controls="method-table-panel" tabindex="0"><span class="method-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v7c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 12v7c0 1.7 3.1 3 7 3s7-1.3 7-3v-7"/></svg></span><span class="method-tab-copy"><span class="method-name">EgoIndex</span><small>Multi-view memory</small></span><span class="method-tab-action" aria-hidden="true">&rarr;</span></button>
+          <button class="method-card" id="method-tab-scheme" type="button" role="tab" data-method-control="scheme" aria-selected="false" aria-controls="method-table-panel" tabindex="-1"><span class="method-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></svg></span><span class="method-tab-copy"><span class="method-name">EgoScheme</span><small>Context-augmented indices</small></span><span class="method-tab-action" aria-hidden="true">&rarr;</span></button>
+          <button class="method-card" id="method-tab-retrv" type="button" role="tab" data-method-control="retrv" aria-selected="false" aria-controls="method-retrieval-panel" tabindex="-1"><span class="method-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></span><span class="method-tab-copy"><span class="method-name">EgoRetrv</span><small>Time-aware retrieval</small></span><span class="method-tab-action" aria-hidden="true">&rarr;</span></button>
+        </div>
+        <p class="sr-only" id="method-table-status" aria-live="polite">EgoIndex selected. The View and Component columns are highlighted.</p>
+        <div class="method-panel" id="method-table-panel" data-method-focus="index" role="tabpanel" aria-labelledby="method-tab-index" tabindex="0">
+          <header class="construction-head">
+            <h3 class="construction-title" id="construction-title">EgoIndex Multi-View Egocentric Memory Indexing</h3>
+            <p class="construction-intro" id="construction-intro">EgoIndex separates experience along two axes: physical behavior versus spoken interaction, and fine- versus coarse-grained semantics. This results in four views: action, activity, utterance, and conversation.</p>
+          </header>
+          <table class="view-table" id="method-view-table" data-method-focus="index" aria-describedby="method-table-status">
+            <caption class="sr-only">The four index views, their components, construction specifications, and examples.</caption>
+            <thead><tr><th class="method-index-column" scope="col">View</th><th class="method-index-column" scope="col">Component</th><th class="method-scheme-column" scope="col">Specification</th><th class="method-scheme-column" scope="col">Example</th></tr></thead>
+            <tbody>
+              <tr><th class="method-index-column" scope="rowgroup" rowspan="3">Action</th><td class="method-index-column">HOI</td><td class="method-scheme-column">Require a named person, a specific object, and direct physical handling.</td><td class="method-scheme-column">“I fasten the shelf bracket with a screwdriver.”</td></tr>
+              <tr><td class="method-index-column">Gesture</td><td class="method-scheme-column">Require a named person and a meaningful expression.</td><td class="method-scheme-column">“Jake laughs loudly.”</td></tr>
+              <tr><td class="method-index-column">Movement</td><td class="method-scheme-column">Require a named person and a named destination that the person reaches.</td><td class="method-scheme-column">“Shure enters the living room.”</td></tr>
+              <tr><th class="method-index-column" scope="row">Utterance</th><td class="method-index-column">—</td><td class="method-scheme-column">Require a named speaker, a speech act, and self-contained content with resolved pronouns and ellipsis.</td><td class="method-scheme-column">“Jake tells Tasha that dinner is ready.”</td></tr>
+              <tr><th class="method-index-column" scope="row">Activity</th><td class="method-index-column">—</td><td class="method-scheme-column">Require an immediate goal, specific participants, an object, and a location.</td><td class="method-scheme-column">“Alice, Tasha, and I prepare dinner in the kitchen.”</td></tr>
+              <tr><th class="method-index-column" scope="row">Conversation</th><td class="method-index-column">—</td><td class="method-scheme-column">Require participants and a specific, coherent topic across captions.</td><td class="method-scheme-column">“Jake and I debate which model to use for the demo video.”</td></tr>
+            </tbody>
+          </table>
+          <div class="construction-detail">
+            <section class="construction-detail-panel" data-construction-detail="index">
+              <h4>Multi-view memory</h4>
+              <p>EgoIndex offers two advantages: (1) <em>Multi-granularity retrieval</em>. Fine- and coarse-grained atomic memory indices support queries at different abstraction levels. (2) <em>Separation of interaction types</em>. Physical behavior and spoken interaction capture complementary aspects of an experience.</p>
+            </section>
+            <section class="construction-detail-panel" data-construction-detail="scheme" hidden>
+              <h4>Self-contained atomic memory indices</h4>
+              <p>By replacing noisy multimodal captions with self-contained atomic memory indices, EgoScheme enables more efficient and effective retrieval while reducing input tokens by 5.7×.</p>
+            </section>
+          </div>
+        </div>
+
+        <figure class="retrieval-workflow" id="method-retrieval-panel" data-retrieval-workflow data-workflow-stage="drafting" role="tabpanel" aria-labelledby="method-tab-retrv workflow-title" tabindex="0" hidden>
+          <figcaption class="workflow-head">
+            <h3 class="workflow-title" id="workflow-title">EgoRetrv Time-Aware Atomic Memory Retrieval</h3>
+            <p class="workflow-intro">EgoRetrv combines semantic search with question-conditioned temporal relevance scoring and curation of retrieved atomic memory indices. The drafting agent estimates the time query from the question using commonsense temporal knowledge and indices retrieved in prior rounds, updating it across rounds. The sampling agent orders the timestamped index pool chronologically and, for “last,” prioritizes the latest timestamps while retaining related indices needed to distinguish answer choices.</p>
+          </figcaption>
+          <div class="workflow-stage-tabs" role="tablist" aria-label="Inspect an EgoRetrv agent">
+            <button class="workflow-stage-tab" id="workflow-tab-drafting" type="button" role="tab" data-workflow-control="drafting" aria-selected="true" aria-controls="workflow-detail-drafting" tabindex="0">
+              <span class="workflow-stage-number">01</span><span class="workflow-stage-copy"><strong>Drafting agent</strong><span>High-recall, multi-round retrieval</span></span>
+            </button>
+            <button class="workflow-stage-tab" id="workflow-tab-sampling" type="button" role="tab" data-workflow-control="sampling" aria-selected="false" aria-controls="workflow-detail-sampling" tabindex="-1">
+              <span class="workflow-stage-number">02</span><span class="workflow-stage-copy"><strong>Sampling agent</strong><span>Time-aware index curation</span></span>
+            </button>
+          </div>
+          <div class="workflow-canvas">
+            <div class="workflow-question">
+              <span class="workflow-question-label">Question</span>
+              <p>“Who used the black signature pen <mark class="temporal-cue">last time</mark>?”</p>
+              <time>Asked at DAY1 13:48</time>
+            </div>
+            <div class="workflow-path" aria-label="Question flows through the drafting agent, database harness, index pool, and sampling agent to a selected atomic memory index">
+              <article class="workflow-node workflow-drafting">
+                <h4>Drafting agent</h4>
+                <span class="workflow-node-label">Time-aware retrieval</span>
+                <div class="workflow-query-list">
+                  <span class="workflow-query"><strong>Semantic query:</strong> signature pen</span>
+                  <span class="workflow-query"><strong>Time query:</strong> DAY1 13:48 <span class="workflow-query-note">The agent’s prediction of when the event most likely occurred.</span></span>
+                </div>
+              </article>
+              <span class="workflow-arrow" aria-hidden="true">&rarr;</span>
+              <article class="workflow-node workflow-harness">
+                <h4 class="workflow-harness-heading"><span class="workflow-harness-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v7c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 12v7c0 1.7 3.1 3 7 3s7-1.3 7-3v-7"/></svg></span>Database Harness</h4>
+                <span class="workflow-node-label">Retrieval scoring</span>
+                <p class="workflow-score"><strong>Relevance Score =</strong><span class="workflow-score-equation"><span>Semantic Relevance</span><span class="workflow-score-symbol">×</span><span>Time Relevance</span></span></p>
+                <p class="workflow-topk">Top-K ranking</p>
+              </article>
+              <span class="workflow-arrow" aria-hidden="true">&rarr;</span>
+              <article class="workflow-node workflow-pool">
+                <h4>Index pool</h4>
+                <span class="workflow-node-label">Working memory</span>
+                <div class="workflow-atoms" aria-label="Timestamped atomic memory indices accumulated across retrieval rounds">
+                  <span class="workflow-atom"></span><span class="workflow-atom"></span><span class="workflow-atom"></span><span class="workflow-atom"></span><span class="workflow-atom is-related"></span><span class="workflow-atom is-latest"></span>
+                </div>
+                <span class="workflow-time">earlier &larr; time &rarr; latest</span>
+              </article>
+              <span class="workflow-arrow workflow-arrow-to-sampling" aria-hidden="true">&rarr;</span>
+              <article class="workflow-node workflow-sampling">
+                <h4>Sampling agent</h4>
+                <span class="workflow-node-label">Time-aware curation</span>
+                <div class="workflow-thinking" role="note" aria-label="Sampling agent reasoning: find the most recent usage.">
+                  <span aria-hidden="true">&lt;think&gt; ...</span>
+                  <strong aria-hidden="true">find the most recent usage</strong>
+                  <span aria-hidden="true">... &lt;/think&gt;</span>
+                </div>
+              </article>
+              <span class="workflow-arrow" aria-hidden="true">&rarr;</span>
+              <article class="workflow-node workflow-output">
+                <h4>Response agent</h4>
+                <span class="workflow-node-label">Final response</span>
+                <blockquote><strong>Caption:</strong> “I see Shure is writing with a signature pen.”</blockquote>
+                <span class="workflow-answer">Answer: Shure</span>
+              </article>
+            </div>
+          </div>
+          <div class="workflow-detail">
+            <section class="workflow-detail-panel" id="workflow-detail-drafting" data-workflow-panel="drafting" role="tabpanel" aria-labelledby="workflow-tab-drafting">
+              <h4>Prioritize recall</h4>
+              <p>The drafting agent issues multi-round semantic, memory-view, and time queries to EgoIndex, retrieves top-ranked timestamped atomic memory indices, and accumulates them in a persistent index pool.</p>
+            </section>
+            <section class="workflow-detail-panel" id="workflow-detail-sampling" data-workflow-panel="sampling" role="tabpanel" aria-labelledby="workflow-tab-sampling" hidden>
+              <h4>Improve precision</h4>
+              <p>The sampling agent reasons over the timestamped index pool in chronological order; for “last,” it prioritizes the latest relevant indices, removes redundant indices, and curates a coherent index set for the response agent.</p>
+            </section>
+            <p class="sr-only" data-workflow-status aria-live="polite">Drafting agent selected. It performs high-recall, multi-round retrieval and accumulates timestamped indices in the index pool.</p>
+          </div>
+        </figure>
+
+        <section class="retrieval-demo" id="egoretrv-traces" data-retrieval-examples role="tabpanel" aria-labelledby="method-tab-retrv retrieval-demo-title" tabindex="0" hidden>
+          <header class="retrieval-demo-head">
+            <h3 class="retrieval-demo-title" id="retrieval-demo-title">EgoRetrv Time Query</h3>
+          </header>
+
+          <div class="retrieval-example-tabs" role="tablist" aria-label="Select an EgoRetrv trace example">
+            <button class="retrieval-tab" id="retrieval-tab-cupcakes" type="button" role="tab" aria-selected="true" aria-controls="retrieval-panel-cupcakes" tabindex="0">
+              <span class="retrieval-tab-number">01</span><span class="retrieval-tab-label">First cupcake event</span><span class="retrieval-tab-shift">#24 &rarr; #4</span>
+            </button>
+            <button class="retrieval-tab" id="retrieval-tab-escalator" type="button" role="tab" aria-selected="false" aria-controls="retrieval-panel-escalator" tabindex="-1">
+              <span class="retrieval-tab-number">02</span><span class="retrieval-tab-label">Last escalator event</span><span class="retrieval-tab-shift">#21 &rarr; #4</span>
+            </button>
+            <button class="retrieval-tab" id="retrieval-tab-milk" type="button" role="tab" aria-selected="false" aria-controls="retrieval-panel-milk" tabindex="-1">
+              <span class="retrieval-tab-number">03</span><span class="retrieval-tab-label">Last milk appearance</span><span class="retrieval-tab-shift">#26 &rarr; #8</span>
+            </button>
+          </div>
+
+          <article class="retrieval-panel" id="retrieval-panel-cupcakes" role="tabpanel" aria-labelledby="retrieval-tab-cupcakes" tabindex="0">
+            <blockquote class="trace-question"><span class="trace-question-label">Question</span><span class="trace-question-text">What was I doing the first time Tasha made cupcakes?</span><time class="question-time">Asked at DAY6 14290806</time></blockquote>
+            <div class="query-grid" aria-label="Drafting-agent query">
+              <div class="query-field"><span class="query-field-label">Memory view query</span><code>Action</code></div>
+              <div class="query-field"><span class="query-field-label">Semantic query</span><code>I fry eggs</code></div>
+              <div class="query-field"><span class="query-field-label">Time query</span><code>DAY1 19000000 to DAY1 20300000</code></div>
+            </div>
+            <div class="rank-shift" aria-label="Target-overlapping index moves from rank 24 to rank 4">
+              <div class="rank-state"><span class="rank-number">#24</span><span class="rank-copy"><strong>Semantic only</strong><span>Outside action top-20</span></span></div>
+              <span class="rank-arrow" aria-hidden="true"><strong>&rarr;</strong><span>Up 20</span></span>
+              <div class="rank-state"><span class="rank-copy"><strong>Time-aware</strong><span>Inside action top-20</span></span><span class="rank-number">#4</span></div>
+            </div>
+            <div class="ranking-comparison">
+              <section class="ranking-column" aria-label="Ranking without temporal relevance">
+                <header class="ranking-head"><strong>Without temporal relevance</strong><span>Semantic relevance</span></header>
+                <div class="ranking-list">
+                  <div class="ranking-row"><span class="ranking-index">1</span><span class="ranking-memory"><time>DAY4 11030500&ndash;11033000</time><span>I fry the eggs in the frying pan</span></span><span class="ranking-score">0.758<small>semantic</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">2</span><span class="ranking-memory"><time>DAY1 19533000&ndash;19535900</time><span>I agree that we should fry the egg</span></span><span class="ranking-score">0.686<small>semantic</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">3</span><span class="ranking-memory"><time>DAY4 11083100&ndash;11085800</time><span>I say that the eggs are fried eggs</span></span><span class="ranking-score">0.680<small>semantic</small></span></div>
+                  <div class="ranking-row is-gap" aria-hidden="true">&middot;&middot;&middot;</div>
+                  <div class="ranking-row is-target"><span class="ranking-index">24</span><span class="ranking-memory"><time>DAY1 19460100&ndash;19463000 <strong class="gt-badge">GT overlap</strong></time><span>I crack eggs into the pan</span></span><span class="ranking-score">0.594<small>semantic</small></span></div>
+                </div>
+              </section>
+              <section class="ranking-column with-time" aria-label="Ranking with EgoRetrv temporal relevance">
+                <header class="ranking-head"><strong>With temporal relevance</strong><span>Semantic relevance &times; time relevance = score</span></header>
+                <div class="ranking-list">
+                  <div class="ranking-row"><span class="ranking-index">1</span><span class="ranking-memory"><time>DAY1 19533000&ndash;19535900</time><span>I agree that we should fry the egg</span></span><span class="ranking-score ranking-score-formula"><span>0.686 &times; 1.000 = 0.686</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">2</span><span class="ranking-memory"><time>DAY1 14003100&ndash;14010000</time><span>I say that preserved eggs can be fried</span></span><span class="ranking-score ranking-score-formula"><span>0.635 &times; 0.951 = 0.604</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">3</span><span class="ranking-memory"><time>DAY1 19533000&ndash;19535900</time><span>Lucia suggests that we fry the egg</span></span><span class="ranking-score ranking-score-formula"><span>0.599 &times; 1.000 = 0.599</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row is-target"><span class="ranking-index">4</span><span class="ranking-memory"><time>DAY1 19460100&ndash;19463000 <strong class="gt-badge">GT overlap</strong></time><span>I crack eggs into the pan</span></span><span class="ranking-score ranking-score-formula"><span>0.594 &times; 1.000 = 0.594</span><small>semantic &times; time relevance</small></span></div>
+                </div>
+              </section>
+            </div>
+            <p class="trace-insight"><strong>Why the rank changes:</strong> The target lies inside the requested time window and keeps full temporal relevance, while the DAY4 semantic match is downweighted from 0.758 to 0.588 and falls from #1 to #5; the target consequently enters the action view's top-20 retrieval budget.</p>
+          </article>
+
+          <article class="retrieval-panel" id="retrieval-panel-escalator" role="tabpanel" aria-labelledby="retrieval-tab-escalator" tabindex="0" hidden>
+            <blockquote class="trace-question"><span class="trace-question-label">Question</span><span class="trace-question-text">Who was I with the last time I stood on the escalator in the supermarket?</span><time class="question-time">Asked at DAY5 16062618</time></blockquote>
+            <div class="query-grid" aria-label="Drafting-agent query">
+              <div class="query-field"><span class="query-field-label">Memory view query</span><code>Activity</code></div>
+              <div class="query-field"><span class="query-field-label">Semantic query</span><code>go supermarket escalator</code></div>
+              <div class="query-field"><span class="query-field-label">Time query</span><code>DAY3 17050000 to DAY3 17200000</code></div>
+            </div>
+            <div class="rank-shift" aria-label="Target-overlapping index moves from rank 21 to rank 4">
+              <div class="rank-state"><span class="rank-number">#21</span><span class="rank-copy"><strong>Semantic only</strong><span>Outside activity top-10</span></span></div>
+              <span class="rank-arrow" aria-hidden="true"><strong>&rarr;</strong><span>Up 17</span></span>
+              <div class="rank-state"><span class="rank-copy"><strong>Time-aware</strong><span>Inside activity top-10</span></span><span class="rank-number">#4</span></div>
+            </div>
+            <div class="ranking-comparison">
+              <section class="ranking-column" aria-label="Ranking without temporal relevance">
+                <header class="ranking-head"><strong>Without temporal relevance</strong><span>Semantic relevance</span></header>
+                <div class="ranking-list">
+                  <div class="ranking-row"><span class="ranking-index">1</span><span class="ranking-memory"><time>DAY3 16373100&ndash;16385800</time><span>Shure, Tasha, Alice, and I head to Hema supermarket for barbecue shopping from the mall escalator</span></span><span class="ranking-score">0.501<small>semantic</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">2</span><span class="ranking-memory"><time>DAY5 15511800&ndash;15523000</time><span>Jack, Tasha, Lucia, and I head into the two-floor supermarket to inspect its selection</span></span><span class="ranking-score">0.462<small>semantic</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">3</span><span class="ranking-memory"><time>DAY1 18263000&ndash;18295300</time><span>I prepare the group to leave with carts, bags, and bills at the supermarket exit</span></span><span class="ranking-score">0.453<small>semantic</small></span></div>
+                  <div class="ranking-row is-gap" aria-hidden="true">&middot;&middot;&middot;</div>
+                  <div class="ranking-row is-target"><span class="ranking-index">21</span><span class="ranking-memory"><time>DAY3 17130200&ndash;17163000 <strong class="gt-badge">GT overlap</strong></time><span>Shure, Tasha, Alice, Lucia, Katrina, and I carry the groceries out of Hema toward the upper mall exit</span></span><span class="ranking-score">0.373<small>semantic</small></span></div>
+                </div>
+              </section>
+              <section class="ranking-column with-time" aria-label="Ranking with EgoRetrv temporal relevance">
+                <header class="ranking-head"><strong>With temporal relevance</strong><span>Semantic relevance &times; time relevance = score</span></header>
+                <div class="ranking-list">
+                  <div class="ranking-row"><span class="ranking-index">1</span><span class="ranking-memory"><time>DAY3 16373100&ndash;16385800</time><span>Shure, Tasha, Alice, and I head to Hema supermarket for barbecue shopping from the mall escalator</span></span><span class="ranking-score ranking-score-formula"><span>0.501 &times; 0.996 = 0.499</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">2</span><span class="ranking-memory"><time>DAY3 15423000&ndash;15452900</time><span>I walk with Tasha toward the mall through the residential streets after leaving the supermarket</span></span><span class="ranking-score ranking-score-formula"><span>0.401 &times; 0.987 = 0.396</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">3</span><span class="ranking-memory"><time>DAY3 17000000&ndash;17022700</time><span>Lucia, Tasha, Shure, Alice, Katrina, and I compare yogurt, douzhi, bread, and grocery prices in the supermarket aisle</span></span><span class="ranking-score ranking-score-formula"><span>0.385 &times; 1.000 = 0.385</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row is-target"><span class="ranking-index">4</span><span class="ranking-memory"><time>DAY3 17130200&ndash;17163000 <strong class="gt-badge">GT overlap</strong></time><span>Shure, Tasha, Alice, Lucia, Katrina, and I carry the groceries out of Hema toward the upper mall exit</span></span><span class="ranking-score ranking-score-formula"><span>0.373 &times; 1.000 = 0.373</span><small>semantic &times; time relevance</small></span></div>
+                </div>
+              </section>
+            </div>
+            <p class="trace-insight"><strong>Why the rank changes:</strong> The answer-bearing group activity lies inside the drafting agent's “last time” window and keeps full temporal relevance; downweighting out-of-window supermarket matches moves it 17 places into the activity view's top-10 retrieval budget.</p>
+          </article>
+
+          <article class="retrieval-panel" id="retrieval-panel-milk" role="tabpanel" aria-labelledby="retrieval-tab-milk" tabindex="0" hidden>
+            <blockquote class="trace-question"><span class="trace-question-label">Question</span><span class="trace-question-text">When was the last time Wonky's Milk appeared in front of me?</span><time class="question-time">Asked at DAY7 13200913</time></blockquote>
+            <div class="query-grid" aria-label="Drafting-agent query">
+              <div class="query-field"><span class="query-field-label">Memory view query</span><code>Action</code></div>
+              <div class="query-field"><span class="query-field-label">Semantic query</span><code>milk carton</code></div>
+              <div class="query-field"><span class="query-field-label">Time query</span><code>DAY1 11000000 to DAY1 16000000</code></div>
+            </div>
+            <div class="rank-shift" aria-label="Target-overlapping index moves from rank 26 to rank 8">
+              <div class="rank-state"><span class="rank-number">#26</span><span class="rank-copy"><strong>Semantic only</strong><span>Outside action top-20</span></span></div>
+              <span class="rank-arrow" aria-hidden="true"><strong>&rarr;</strong><span>Up 18</span></span>
+              <div class="rank-state"><span class="rank-copy"><strong>Time-aware</strong><span>Inside action top-20</span></span><span class="rank-number">#8</span></div>
+            </div>
+            <div class="ranking-comparison">
+              <section class="ranking-column" aria-label="Ranking without temporal relevance">
+                <header class="ranking-head"><strong>Without temporal relevance</strong><span>Semantic relevance</span></header>
+                <div class="ranking-list">
+                  <div class="ranking-row"><span class="ranking-index">1</span><span class="ranking-memory"><time>DAY3 21350300&ndash;21353000</time><span>I move the milk carton on the table</span></span><span class="ranking-score">0.585<small>semantic</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">2</span><span class="ranking-memory"><time>DAY2 11180000&ndash;11182700</time><span>I place another carton of milk near the table</span></span><span class="ranking-score">0.580<small>semantic</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">3</span><span class="ranking-memory"><time>DAY5 20080000&ndash;20083000</time><span>Tasha picks up a carton of milk from the table</span></span><span class="ranking-score">0.546<small>semantic</small></span></div>
+                  <div class="ranking-row is-gap" aria-hidden="true">&middot;&middot;&middot;</div>
+                  <div class="ranking-row is-target"><span class="ranking-index">26</span><span class="ranking-memory"><time>DAY1 14103400&ndash;14105700 <strong class="gt-badge">GT overlap</strong></time><span>I put the Wangzai milk on top of the big box</span></span><span class="ranking-score">0.466<small>semantic</small></span></div>
+                </div>
+              </section>
+              <section class="ranking-column with-time" aria-label="Ranking with EgoRetrv temporal relevance">
+                <header class="ranking-head"><strong>With temporal relevance</strong><span>Semantic relevance &times; time relevance = score</span></header>
+                <div class="ranking-list">
+                  <div class="ranking-row"><span class="ranking-index">1</span><span class="ranking-memory"><time>DAY2 11180000&ndash;11182700</time><span>I place another carton of milk near the table</span></span><span class="ranking-score ranking-score-formula"><span>0.580 &times; 0.936 = 0.543</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">2</span><span class="ranking-memory"><time>DAY2 11190100&ndash;11193000</time><span>I place a carton of milk on one side of the table</span></span><span class="ranking-score ranking-score-formula"><span>0.542 &times; 0.936 = 0.507</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">3</span><span class="ranking-memory"><time>DAY2 11180000&ndash;11182700</time><span>I move a carton of milk</span></span><span class="ranking-score ranking-score-formula"><span>0.541 &times; 0.936 = 0.506</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row is-gap" aria-hidden="true">&middot;&middot;&middot;</div>
+                  <div class="ranking-row is-target"><span class="ranking-index">8</span><span class="ranking-memory"><time>DAY1 14103400&ndash;14105700 <strong class="gt-badge">GT overlap</strong></time><span>I put the Wangzai milk on top of the big box</span></span><span class="ranking-score ranking-score-formula"><span>0.466 &times; 1.000 = 0.466</span><small>semantic &times; time relevance</small></span></div>
+                </div>
+              </section>
+            </div>
+            <p class="trace-insight"><strong>Why the rank changes:</strong> The target lies inside the DAY1 time window and keeps full temporal relevance, while the closest DAY3 milk match is downweighted from 0.585 to 0.440 and falls from #1 to #11; the target consequently enters the action view's top-20 retrieval budget.</p>
+          </article>
+
+          <p class="sr-only" data-retrieval-status aria-live="polite">Showing First cupcake event. The target-overlapping index moves from rank 24 to rank 4.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="container wide">
+        <h2 class="section-title">Experiments</h2>
+        <p class="section-subtitle">We evaluate EgoCITE on EgoLifeQA, EgoMem, and EgoR1-Bench in terms of answer accuracy and target-event retrieval alignment.</p>
+        <div class="benchmark-summary">
+          <div class="benchmark-intro">
+            <p class="benchmark-metrics-label"><strong>Metrics:</strong></p>
+            <p id="accuracy-definition"><strong>1. Accuracy:</strong> the percentage of questions for which the response agent selects the ground-truth choice from the candidate answers.</p>
+            <p id="hit-rate-definition"><strong>2. Retrieval Hit Rate:</strong> the percentage of questions whose retrieved memory indices temporally overlap the target time needed to answer the question, using a maximum retrieval budget of 15 memory indices for every baseline before question answering.</p>
+          </div>
+          <div class="table-guide" aria-label="Table ranking guide">
+            <span class="table-guide-label">Top values per metric</span>
+            <span class="rank-key rank-key-first"><strong>1st</strong> Best</span>
+            <span class="rank-key rank-key-second"><strong>2nd</strong> Second</span>
+            <span class="rank-key rank-key-third"><strong>3rd</strong> Third</span>
+            <span class="table-scroll-hint">Scroll horizontally to inspect all benchmarks</span>
+          </div>
+          <section class="table-scroll" aria-label="Benchmark accuracy and retrieval hit rate" aria-describedby="accuracy-definition hit-rate-definition" tabindex="0">
+            <table class="benchmark-table">
+              <caption class="sr-only">Answer accuracy and retrieval hit rate across EgoLifeQA, EgoMem, and EgoR1-Bench. The three highest distinct values in each accuracy and hit-rate metric are ranked.</caption>
+              <colgroup>
+                <col class="method-col">
+                <col class="token-col">
+                <col class="metric-col" span="6">
+              </colgroup>
+              <thead>
+                <tr><th scope="col" rowspan="2">Method</th><th scope="col" rowspan="2">Input tokens</th><th class="accuracy-group" scope="colgroup" colspan="3">Accuracy (%)</th><th class="hit-group" scope="colgroup" colspan="3">Retrieval Hit Rate (%)</th></tr>
+                <tr><th scope="col">EgoLifeQA</th><th scope="col">EgoMem</th><th scope="col">EgoR1-Bench</th><th scope="col">EgoLifeQA</th><th scope="col">EgoMem</th><th scope="col">EgoR1-Bench</th></tr>
+              </thead>
+              <tbody>
+                <tr class="group"><th scope="row" colspan="8">Long-context LLM agents</th></tr>
+                <tr><td>GPT-5.4 agent</td><td>783k</td><td>54.9</td><td>75.1</td><td>71.0</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr><td>Gemini-3.1-Pro agent</td><td>804k</td><td>60.2</td><td>78.3</td><td>72.7</td><td>—</td><td>—</td><td>—</td></tr>
+                <tr class="group"><th scope="row" colspan="8">Agentic memory baselines</th></tr>
+                <tr><td>EgoRAG</td><td>16k</td><td>34.3</td><td>59.5</td><td>49.5</td><td>4.3</td><td>41.1</td><td>7.6</td></tr>
+                <tr><td>A-MEM</td><td>6k</td><td>42.9</td><td>58.8</td><td>52.0</td><td>15.4</td><td>41.4</td><td>24.7</td></tr>
+                <tr><td>VideoRAG</td><td>21k</td><td>46.5</td><td>68.6</td><td>64.7</td><td>2.0</td><td>17.4</td><td>6.0</td></tr>
+                <tr><td>WorldMM-Qwen</td><td>87k</td><td>46.4</td><td>74.8</td><td>66.3</td><td>31.0</td><td>72.6</td><td>38.3</td></tr>
+                <tr><td>WorldMM-GPT</td><td>134k</td><td>49.6</td><td>68.1</td><td>64.0</td><td>34.5</td><td>66.9</td><td>40.0</td></tr>
+                <tr class="ours-row"><td>EgoCITE-Qwen (ours)</td><td>34k</td><td>61.5</td><td>79.9</td><td>73.0</td><td>43.4</td><td>86.8</td><td>59.0</td></tr>
+                <tr class="ours-row"><td>EgoCITE-GPT (ours)</td><td>32k</td><td>63.8</td><td>79.2</td><td>75.7</td><td>49.6</td><td>89.6</td><td>62.7</td></tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+
+        <div class="interactive-results" role="group" aria-label="EgoCITE result views">
+          <div class="figure-switcher" data-figure-switcher hidden>
+            <div class="figure-switcher-head"><h3 class="figure-switcher-title" id="results-switcher-label">Explore EgoCITE results</h3></div>
+            <div class="figure-tabs" role="tablist" aria-labelledby="results-switcher-label" data-figure-tabs>
+              <button class="figure-tab" id="results-tab-1" type="button" role="tab" aria-selected="true" aria-controls="figure-1" tabindex="0">
+                <span class="figure-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 8 6-3 10H7L4 9l8-6Z"/><path d="m12 7 4 3-1.5 5H9.5L8 10l4-3Z"/><circle cx="12" cy="12" r="1"/></svg></span>
+                <span class="figure-tab-copy"><span class="figure-tab-title">Category accuracy</span></span>
+                <span class="figure-tab-action" data-tab-indicator aria-hidden="true">✓</span>
+              </button>
+              <button class="figure-tab" id="results-tab-4" type="button" role="tab" aria-selected="false" aria-controls="figure-4" tabindex="-1">
+                <span class="figure-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="m6.5 15 4-4 3 2 4.5-6"/><circle cx="6.5" cy="15" r="1"/><circle cx="10.5" cy="11" r="1"/><circle cx="13.5" cy="13" r="1"/><circle cx="18" cy="7" r="1"/></svg></span>
+                <span class="figure-tab-copy"><span class="figure-tab-title">Memory scaling</span></span>
+                <span class="figure-tab-action" data-tab-indicator aria-hidden="true">→</span>
+              </button>
+              <button class="figure-tab" id="results-tab-5" type="button" role="tab" aria-selected="false" aria-controls="figure-5" tabindex="-1">
+                <span class="figure-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="14" r="3"/><circle cx="15" cy="8" r="4"/><circle cx="18" cy="17" r="2"/></svg></span>
+                <span class="figure-tab-copy"><span class="figure-tab-title">Efficiency</span></span>
+                <span class="figure-tab-action" data-tab-indicator aria-hidden="true">→</span>
+              </button>
+              <button class="figure-tab" id="results-tab-temporal" type="button" role="tab" aria-selected="false" aria-controls="result-temporal" tabindex="-1">
+                <span class="figure-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3.5 2"/><path d="M4 4.5 6.5 7M20 4.5 17.5 7"/></svg></span>
+                <span class="figure-tab-copy"><span class="figure-tab-title">Temporal Questions</span></span>
+                <span class="figure-tab-action" data-tab-indicator aria-hidden="true">→</span>
+              </button>
+              <button class="figure-tab" id="results-tab-habits" type="button" role="tab" aria-selected="false" aria-controls="result-habits" tabindex="-1">
+                <span class="figure-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="12" cy="17" r="2"/><path d="M9 7h6M8.5 8.5l2.4 6.6M15.5 8.5l-2.4 6.6"/></svg></span>
+                <span class="figure-tab-copy"><span class="figure-tab-title">Habitual Questions</span></span>
+                <span class="figure-tab-action" data-tab-indicator aria-hidden="true">→</span>
+              </button>
+              <button class="figure-tab" id="results-tab-rounds" type="button" role="tab" aria-selected="false" aria-controls="result-rounds" tabindex="-1">
+                <span class="figure-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 7h8.5a3.5 3.5 0 0 1 0 7H8"/><path d="m10 10-3 4 3 4"/><circle cx="7" cy="7" r="1.5"/><circle cx="17" cy="14" r="1.5"/></svg></span>
+                <span class="figure-tab-copy"><span class="figure-tab-title">Retrieval rounds</span></span>
+                <span class="figure-tab-action" data-tab-indicator aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+
+          <figure class="interactive-figure" id="figure-1" data-chart="radar" role="tabpanel" aria-labelledby="results-tab-1" tabindex="0">
+            <header class="interactive-figure-head">
+              <div>
+                <h3 class="interactive-figure-title">Category accuracy</h3>
+                <p class="result-evaluation" id="figure-1-evaluation">Multiple-choice answer accuracy is evaluated across five EgoLifeQA question categories and four EgoMem question categories.</p>
+                <p class="result-statement" id="figure-1-result"><strong>Result:</strong> EgoCITE-GPT achieves the highest accuracy in all nine categories, outperforming the strongest displayed agentic memory baseline in each category by 5.8–20.5 percentage points on EgoLifeQA and 3.4–15.3 percentage points on EgoMem.</p>
+                <p class="figure-insight" id="figure-1-insight"><strong>Insight:</strong> These consistent gains show that EgoCITE’s structured memory representation and time-aware retrieval improve accuracy across diverse egocentric question types.</p>
+              </div>
+            </header>
+            <div class="chart-toolbar" data-chart-toolbar hidden>
+              <div class="chart-segmented" role="group" aria-label="Select benchmark">
+                <span class="toolbar-label">Benchmark</span>
+                <button type="button" data-radar-benchmark="EgoLifeQA" aria-pressed="true">EgoLifeQA</button>
+                <button type="button" data-radar-benchmark="EgoMem" aria-pressed="false">EgoMem</button>
+              </div>
+              <div class="chart-legend" data-chart-legend role="group" aria-label="Toggle methods"></div>
+            </div>
+            <div class="chart-stage">
+              <img class="chart-fallback" src="static/images/radar_benchmarks.png" alt="Per-category QA accuracy on EgoLifeQA and EgoMem." width="1600" height="1013" loading="lazy">
+              <div class="chart-canvas-wrap" data-chart-canvas-wrap hidden>
+                <canvas data-chart-canvas role="img" aria-label="Interactive radar chart of per-category QA accuracy" aria-describedby="figure-1-evaluation figure-1-result figure-1-insight"></canvas>
+              </div>
+            </div>
+          </figure>
+
+          <figure class="interactive-figure" id="figure-4" data-chart="horizon" role="tabpanel" aria-labelledby="results-tab-4" tabindex="0">
+            <header class="interactive-figure-head">
+              <div>
+                <h3 class="interactive-figure-title">Memory scaling</h3>
+                <p class="result-evaluation" id="figure-4-evaluation">Cumulative multiple-choice accuracy on EgoLifeQA is measured as the available memory horizon expands from DAY1 through DAY7.</p>
+                <p class="result-statement" id="figure-4-result"><strong>Result:</strong> EgoCITE-GPT leads every baseline from DAY3 onward and reaches 62.8% at DAY7, 2.5 percentage points above the next-best Gemini-3.1-Pro agent at 60.3%.</p>
+                <p class="figure-insight" id="figure-4-insight"><strong>Insight:</strong> EgoCITE’s structured multi-view memory and time-aware retrieval scale more effectively than both long-context reasoning and existing retrieval-based approaches.</p>
+              </div>
+            </header>
+            <div class="chart-toolbar" data-chart-toolbar hidden>
+              <div class="chart-legend" data-chart-legend role="group" aria-label="Toggle methods"></div>
+            </div>
+            <div class="chart-stage">
+              <img class="chart-fallback" src="static/images/cumulative_accuracy.png" alt="EgoLifeQA accuracy over an increasing memory horizon." width="1600" height="1013" loading="lazy">
+              <div class="chart-canvas-wrap" data-chart-canvas-wrap hidden>
+                <canvas data-chart-canvas role="img" aria-label="Interactive line chart of cumulative EgoLifeQA accuracy from DAY1 through DAY7" aria-describedby="figure-4-evaluation figure-4-result figure-4-insight"></canvas>
+              </div>
+            </div>
+            <div class="chart-inspector day-inspector" data-chart-inspector hidden>
+              <div class="day-range"><span><label for="memory-horizon-range">Inspect memory horizon</label><output data-day-label>DAY7</output></span><input id="memory-horizon-range" type="range" min="1" max="7" step="1" value="7" data-day-range></div>
+              <div class="day-values" data-day-values aria-live="polite"></div>
+            </div>
+            <p class="chart-instruction" data-chart-instruction hidden>Move across the plot or use the day slider to compare all visible methods at the same memory horizon.</p>
+          </figure>
+
+          <figure class="interactive-figure" id="figure-5" data-chart="tradeoff" role="tabpanel" aria-labelledby="results-tab-5" tabindex="0">
+            <header class="interactive-figure-head">
+              <div>
+                <h3 class="interactive-figure-title">Efficiency</h3>
+                <p class="result-evaluation" id="figure-5-evaluation">We evaluate the EgoLifeQA accuracy–efficiency trade-off using average retrieval latency per question and normalized cost, the GPT-5.4-price-weighted sum of input and output token costs, where lower latency and cost are better.</p>
+                <p class="result-statement" id="figure-5-result"><strong>Result:</strong> Five-round EgoCITE-GPT reaches 63.8% accuracy at 32.0 s and 44.1k normalized cost, outperforming WorldMM-GPT by 14.2 percentage points with 14.8 s lower latency and GPT-5.4 by 8.9 points with 36× lower cost at comparable latency.</p>
+                <p class="figure-insight" id="figure-5-insight"><strong>Insight:</strong> EgoCITE lies on the Pareto frontier because its concise, coreference-resolved atomic memory indices reduce input context per retrieved index by 5.7× relative to WorldMM captions, balancing accuracy, latency, and cost.</p>
+              </div>
+            </header>
+            <div class="chart-toolbar" data-chart-toolbar hidden>
+              <div class="chart-legend" data-chart-legend role="group" aria-label="Toggle methods"></div>
+            </div>
+            <div class="chart-stage">
+              <img class="chart-fallback" src="static/images/latency_accuracy_tradeoff.png" alt="EgoLifeQA accuracy, latency, and normalized cost trade-offs." width="1600" height="1013" loading="lazy">
+              <div class="chart-canvas-wrap" data-chart-canvas-wrap hidden>
+                <canvas data-chart-canvas role="img" aria-label="Interactive bubble chart of EgoLifeQA accuracy, latency, and normalized cost" aria-describedby="figure-5-evaluation figure-5-result figure-5-insight"></canvas>
+              </div>
+            </div>
+            <div class="chart-inspector tradeoff-inspector" data-chart-inspector hidden>
+              <label>Inspect method<select data-tradeoff-method></select></label>
+              <output class="chart-output tradeoff-output" data-tradeoff-output aria-live="polite"></output>
+            </div>
+            <p class="chart-instruction" data-chart-instruction hidden>Higher accuracy and lower latency are better; bubble area encodes normalized cost. Select or hover a point for exact values.</p>
+          </figure>
+
+          <section class="interactive-figure result-table-panel" id="result-temporal" role="tabpanel" aria-labelledby="results-tab-temporal" tabindex="0">
+            <header class="interactive-figure-head">
+              <div>
+                <h3 class="interactive-figure-title">Temporal Questions</h3>
+                <p class="result-evaluation">Accuracy is evaluated on 2,223 EgoLifeQA questions containing explicit temporal cues, which constitute 76% of the benchmark.</p>
+                <p class="result-statement"><strong>Result:</strong> EgoCITE-GPT reaches 62.6% accuracy, outperforming Gemini-3.1-Pro by 3.9 percentage points and WorldMM-GPT by 15.5 percentage points.</p>
+                <p class="figure-insight"><strong>Insight:</strong> EgoCITE captures temporal intent more effectively than both long-context LLM agents and existing agentic memory baselines.</p>
+              </div>
+            </header>
+            <section class="result-table-wrap narrow" aria-label="Temporal-question accuracy table">
+              <table class="result-detail-table temporal-table">
+                <caption class="sr-only">Accuracy on the 2,223-question temporal-aware EgoLifeQA subset. Higher values are better; the three highest distinct values are ranked.</caption>
+                <colgroup><col><col></colgroup>
+                <thead><tr><th scope="col">Method</th><th scope="col">Accuracy (%) <span aria-hidden="true">↑</span><span class="sr-only"> Higher is better.</span></th></tr></thead>
+                <tbody>
+                  <tr class="group"><th scope="rowgroup" colspan="2">Long-context LLM agents</th></tr>
+                  <tr><th scope="row">GPT-5.4 agent</th><td>51.6</td></tr>
+                  <tr><th scope="row">Gemini-3.1-Pro agent</th><td>58.7</td></tr>
+                </tbody>
+                <tbody>
+                  <tr class="group"><th scope="rowgroup" colspan="2">Agentic memory baselines</th></tr>
+                  <tr><th scope="row">EgoRAG</th><td>34.8</td></tr>
+                  <tr><th scope="row">A-MEM</th><td>42.2</td></tr>
+                  <tr><th scope="row">VideoRAG</th><td>43.4</td></tr>
+                  <tr><th scope="row">WorldMM-Qwen</th><td>43.8</td></tr>
+                  <tr><th scope="row">WorldMM-GPT</th><td>47.1</td></tr>
+                </tbody>
+                <tbody>
+                  <tr class="group ours-group"><th scope="rowgroup" colspan="2">EgoCITE</th></tr>
+                  <tr class="ours-result"><th scope="row">EgoCITE-Qwen (ours)</th><td>60.9</td></tr>
+                  <tr class="ours-result"><th scope="row">EgoCITE-GPT (ours)</th><td class="best-cell">62.6</td></tr>
+                </tbody>
+              </table>
+            </section>
+          </section>
+
+          <section class="interactive-figure result-table-panel" id="result-habits" role="tabpanel" aria-labelledby="results-tab-habits" tabindex="0">
+            <header class="interactive-figure-head">
+              <div>
+                <h3 class="interactive-figure-title">Habitual Questions</h3>
+                <p class="result-evaluation">Accuracy is evaluated on habitual questions in EgoLifeQA and multiple-evidence questions in EgoMem, both of which require retrieving information across multiple timestamps rather than from a single moment.</p>
+                <p class="result-statement"><strong>Result:</strong> EgoCITE-GPT reaches 64.3% accuracy on habitual questions and 80.3% on multiple-evidence questions, outperforming agentic memory baselines by 5.8–29.9 and 3.0–22.7 percentage points, respectively.</p>
+                <p class="figure-insight"><strong>Insight:</strong> EgoRetrv aggregates and retrieves information across long temporal horizons while requiring more than 24× fewer input tokens than long-context LLM agents.</p>
+              </div>
+            </header>
+            <section class="result-table-wrap" aria-label="Habitual and multiple-evidence accuracy table">
+              <table class="result-detail-table habit-table">
+                <caption class="sr-only">Accuracy on habitual EgoLifeQA questions and multiple-evidence EgoMem questions. Higher values are better; the three highest distinct values in each column are ranked.</caption>
+                <colgroup><col><col><col></colgroup>
+                <thead>
+                  <tr><th scope="col" rowspan="2">Method</th><th class="metric-group" scope="colgroup" colspan="2">Accuracy (%) <span aria-hidden="true">↑</span><span class="sr-only"> Higher is better.</span></th></tr>
+                  <tr><th scope="col">Habitual<span class="dataset-label">EgoLifeQA</span></th><th scope="col">Multiple evidence<span class="dataset-label">EgoMem</span></th></tr>
+                </thead>
+                <tbody>
+                  <tr class="group"><th scope="rowgroup" colspan="3">Long-context LLM agents</th></tr>
+                  <tr><th scope="row">GPT-5.4 agent</th><td>63.9</td><td class="best-cell">83.8</td></tr>
+                  <tr><th scope="row">Gemini-3.1-Pro agent</th><td>59.8</td><td>81.2</td></tr>
+                </tbody>
+                <tbody>
+                  <tr class="group"><th scope="rowgroup" colspan="3">Agentic memory baselines</th></tr>
+                  <tr><th scope="row">EgoRAG</th><td>34.4</td><td>57.6</td></tr>
+                  <tr><th scope="row">A-MEM</th><td>44.3</td><td>61.6</td></tr>
+                  <tr><th scope="row">VideoRAG</th><td>58.5</td><td>70.7</td></tr>
+                  <tr><th scope="row">WorldMM-Qwen</th><td>49.5</td><td>77.3</td></tr>
+                  <tr><th scope="row">WorldMM-GPT</th><td>53.6</td><td>64.6</td></tr>
+                </tbody>
+                <tbody>
+                  <tr class="group ours-group"><th scope="rowgroup" colspan="3">EgoCITE</th></tr>
+                  <tr class="ours-result"><th scope="row">EgoCITE-Qwen (ours)</th><td>58.8</td><td>78.2</td></tr>
+                  <tr class="ours-result"><th scope="row">EgoCITE-GPT (ours)</th><td class="best-cell">64.3</td><td>80.3</td></tr>
+                </tbody>
+              </table>
+            </section>
+          </section>
+
+          <section class="interactive-figure result-table-panel" id="result-rounds" role="tabpanel" aria-labelledby="results-tab-rounds" tabindex="0">
+            <header class="interactive-figure-head">
+              <div>
+                <h3 class="interactive-figure-title">Retrieval rounds</h3>
+                <p class="result-evaluation">The EgoCITE-GPT ablation varies retrieval depth across one, three, and five rounds and reports retrieval hit rate and average QA accuracy on EgoLifeQA, with curation applied only to the three- and five-round variants.</p>
+                <p class="result-statement"><strong>Result:</strong> The five-round variant reaches a 49.6% hit rate and 63.8% average accuracy, improving over the one-round variant by 13.1 and 5.1 percentage points, respectively.</p>
+                <p class="figure-insight"><strong>Insight:</strong> Most gains occur within three rounds, where hit rate rises by 12.1 points and accuracy by 3.9 points, showing that EgoCITE progressively refines retrieval and recovers additional relevant atomic memory indices.</p>
+              </div>
+            </header>
+            <section class="result-table-wrap" aria-label="Retrieval-round ablation table">
+              <table class="result-detail-table rounds-table">
+                <caption class="sr-only">Retrieval-round ablation for EgoCITE-GPT on EgoLifeQA. Higher values are better; the three highest distinct values in each row are ranked.</caption>
+                <colgroup><col><col><col><col></colgroup>
+                <thead><tr><th scope="col">Metric</th><th scope="col">1 round<span class="round-note">No curation</span></th><th scope="col">3 rounds<span class="round-note">Curated</span></th><th scope="col">5 rounds<span class="round-note">Curated</span></th></tr></thead>
+                <tbody>
+                  <tr class="group"><th scope="rowgroup" colspan="4">Retrieval and overall QA</th></tr>
+                  <tr><th scope="row">Hit rate (%)</th><td>36.5</td><td>48.6</td><td class="best-cell">49.6</td></tr>
+                  <tr><th scope="row">Average accuracy (%)</th><td>58.7</td><td>62.6</td><td class="best-cell">63.8</td></tr>
+                </tbody>
+                <tbody>
+                  <tr class="group"><th scope="rowgroup" colspan="4">QA accuracy by category (%)</th></tr>
+                  <tr><th scope="row">EntityLog</th><td>61.9</td><td>66.1</td><td class="category-best">67.4</td></tr>
+                  <tr><th scope="row">EventRecall</th><td>54.7</td><td>58.6</td><td class="category-best">59.5</td></tr>
+                  <tr><th scope="row">HabitInsight</th><td>60.1</td><td>60.1</td><td class="category-best">64.3</td></tr>
+                  <tr><th scope="row">RelationMap</th><td>62.6</td><td>65.4</td><td class="category-best">65.6</td></tr>
+                  <tr><th scope="row">TaskMaster</th><td>61.0</td><td>71.0</td><td class="category-best">71.4</td></tr>
+                </tbody>
+              </table>
+            </section>
+          </section>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section alt examples-section" id="examples">
+      <div class="container wide">
+        <h2 class="section-title">Examples</h2>
+        <div data-retrieval-examples-mount></div>
+      </div>
+    </section>
+
+    <section class="section citation-section" id="bibtex">
+      <div class="container wide">
+        <h2 class="section-title">Citation</h2>
+        <p class="section-subtitle">The official BibTeX entry will replace this placeholder when the arXiv record becomes available.</p>
+        <div class="citation-card">
+          <span class="citation-status">Temporary BibTeX</span>
+          <pre class="citation-code"><code>@misc{egocite2026,
+  title  = {EgoCITE: Context-Augmented Indexing and Time-Aware Retrieval for Long-Horizon Egocentric Memory},
+  author = {Anonymous Authors},
+  year   = {2026},
+  note   = {BibTeX placeholder; arXiv identifier forthcoming}
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container wide">This academic project page follows the structure of the <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noreferrer">Nerfies project-page template</a>. Evaluated on <a href="https://egolife-ai.github.io/" target="_blank" rel="noreferrer">EgoLifeQA</a>, <a href="https://github.com/RayNeo-AI-2025/LifeDialBench" target="_blank" rel="noreferrer">EgoMem</a>, and <a href="https://github.com/egolife-ai/Ego-R1" target="_blank" rel="noreferrer">EgoR1-Bench</a>.</div>
+  </footer>
+
+  <script src="static/vendor/chart.umd.min.js" defer></script>
+  <script src="static/js/methodology.js?v=12" defer></script>
+  <script src="static/js/retrieval-workflow.js?v=2" defer></script>
+  <script src="static/js/retrieval-examples.js?v=2" defer></script>
+  <script src="static/js/results-charts.js?v=16" defer></script>
+</body>
+</html>
