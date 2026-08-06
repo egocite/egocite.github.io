@@ -327,7 +327,8 @@ figcaption b { color: var(--ink); }
 .workflow-stage-tab:hover { border-color: var(--yellow-dark); background: var(--yellow-paper); box-shadow: inset 0 -3px var(--yellow); transform: translateY(-1px); }
 .workflow-stage-tab:active { transform: translateY(1px); }
 .workflow-stage-tab[aria-selected="true"] { border-color: var(--yellow-dark); background: var(--yellow); box-shadow: inset 0 -3px var(--yellow-dark); }
-.workflow-stage-number { display: inline-grid; width: 32px; height: 32px; flex: 0 0 auto; place-items: center; border: 1px solid currentColor; border-radius: 50%; color: var(--yellow-dark); font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+.workflow-stage-icon { display: inline-grid; width: 34px; height: 34px; flex: 0 0 auto; place-items: center; border: 1px solid currentColor; border-radius: 50%; color: var(--yellow-dark); }
+.workflow-stage-icon svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.75; }
 .workflow-stage-copy { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem .6rem; font-size: .96rem; }
 .workflow-stage-copy strong { font-size: 1.03rem; }
 .workflow-stage-copy span { color: var(--text); }
