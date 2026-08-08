@@ -41,40 +41,45 @@
 
   if (typeTabs.length) selectExampleType(typeTabs.find((tab) => tab.getAttribute("aria-selected") === "true") || typeTabs[0]);
 
-  const schemeRoot = document.querySelector("[data-scheme-examples]");
-  if (schemeRoot) {
-    const schemeTabs = [...schemeRoot.querySelectorAll('.scheme-example-tabs [role="tab"]')];
-    const schemePanels = [...schemeRoot.querySelectorAll('.scheme-example-panel[role="tabpanel"]')];
+  function initializeNestedTabs(rootSelector, tabSelector, panelSelector) {
+    const nestedRoot = document.querySelector(rootSelector);
+    if (!nestedRoot) return;
 
-    function selectSchemeTab(tab, moveFocus = false) {
+    const nestedTabs = [...nestedRoot.querySelectorAll(tabSelector)];
+    const nestedPanels = [...nestedRoot.querySelectorAll(panelSelector)];
+
+    function selectNestedTab(tab, moveFocus = false) {
       const panelId = tab.getAttribute("aria-controls");
-      schemeTabs.forEach((candidate) => {
+      nestedTabs.forEach((candidate) => {
         const selected = candidate === tab;
         candidate.setAttribute("aria-selected", String(selected));
         candidate.tabIndex = selected ? 0 : -1;
       });
-      schemePanels.forEach((panel) => {
+      nestedPanels.forEach((panel) => {
         panel.hidden = panel.id !== panelId;
       });
       if (moveFocus) tab.focus();
     }
 
-    schemeTabs.forEach((tab, index) => {
-      tab.addEventListener("click", () => selectSchemeTab(tab));
+    nestedTabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => selectNestedTab(tab));
       tab.addEventListener("keydown", (event) => {
         let nextIndex;
-        if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex = (index + 1) % schemeTabs.length;
-        if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex = (index - 1 + schemeTabs.length) % schemeTabs.length;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex = (index + 1) % nestedTabs.length;
+        if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex = (index - 1 + nestedTabs.length) % nestedTabs.length;
         if (event.key === "Home") nextIndex = 0;
-        if (event.key === "End") nextIndex = schemeTabs.length - 1;
+        if (event.key === "End") nextIndex = nestedTabs.length - 1;
         if (nextIndex === undefined) return;
         event.preventDefault();
-        selectSchemeTab(schemeTabs[nextIndex], true);
+        selectNestedTab(nestedTabs[nextIndex], true);
       });
     });
 
-    if (schemeTabs.length) selectSchemeTab(schemeTabs.find((tab) => tab.getAttribute("aria-selected") === "true") || schemeTabs[0]);
+    if (nestedTabs.length) selectNestedTab(nestedTabs.find((tab) => tab.getAttribute("aria-selected") === "true") || nestedTabs[0]);
   }
+
+  initializeNestedTabs("[data-index-examples]", '.index-example-tabs [role="tab"]', '.index-example-panel[role="tabpanel"]');
+  initializeNestedTabs("[data-scheme-examples]", '.scheme-example-tabs [role="tab"]', '.scheme-example-panel[role="tabpanel"]');
 
   const tabs = [...root.querySelectorAll('[role="tab"]')];
   const panels = [...root.querySelectorAll('[role="tabpanel"]')];
