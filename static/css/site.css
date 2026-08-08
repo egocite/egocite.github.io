@@ -216,7 +216,7 @@ figcaption b { color: var(--ink); }
 
 /* Motivation */
 .two-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-block: 1px solid var(--line); }
-.insight { padding: 1.45rem 1.55rem; }
+.insight { display: grid; grid-template-rows: auto 1fr auto; padding: 1.45rem 1.55rem; }
 .insight + .insight { border-left: 1px solid var(--line); }
 .insight-label {
   color: var(--blue);
@@ -228,19 +228,23 @@ figcaption b { color: var(--ink); }
 .insight:nth-child(2) .insight-label { color: var(--yellow-dark); }
 .insight h3 { margin: .25rem 0 .55rem; font-size: 1.12rem; line-height: 1.38; }
 .insight p { margin: 0; color: var(--text); font-family: var(--serif); font-size: .96rem; }
-.insight-stat {
-  display: flex;
-  align-items: baseline;
-  gap: .6rem;
+.insight-stats {
   margin-top: .85rem;
-  padding-top: .7rem;
   border-top: 1px solid var(--line-soft);
+}
+.insight-stat {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  align-items: baseline;
+  gap: .75rem;
+  padding: .55rem 0;
   color: var(--blue);
   font-family: var(--serif);
-  font-size: 1.35rem;
 }
+.insight-stat + .insight-stat { border-top: 1px solid var(--line-soft); }
 .insight:nth-child(2) .insight-stat { color: var(--yellow-dark); }
-.insight-stat small { color: var(--muted); font-family: var(--sans); font-size: .8rem; }
+.insight-stat strong { font-size: 1.35rem; line-height: 1; }
+.insight-stat small { color: var(--muted); font-family: var(--sans); font-size: .8rem; line-height: 1.42; }
 .paper-figure { margin: 1.5rem 0 0; }
 .paper-figure a { display: block; border: 1px solid var(--line); background: #fff; }
 .paper-figure img { width: 100%; }

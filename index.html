@@ -18,7 +18,7 @@
   <link rel="icon" type="image/svg+xml" href="static/images/ai-glasses-icon.svg?v=1">
   <link rel="icon" type="image/png" sizes="32x32" href="static/images/ai-glasses-icon-32.png?v=1">
   <link rel="apple-touch-icon" sizes="180x180" href="static/images/ai-glasses-icon-180.png?v=1">
-  <link rel="stylesheet" href="static/css/site.css?v=19">
+  <link rel="stylesheet" href="static/css/site.css?v=20">
 </head>
 <body>
   <!--
@@ -93,13 +93,19 @@
           <div class="two-column">
             <article class="insight">
               <h3>Insight 1: Long-horizon egocentric agentic search is limited by what is indexed.</h3>
-              <p>Memory indices are typically built directly from short, independently generated memory entries, such as captions and speech transcripts. These entries often omit the local context needed to identify people, objects, actions, and elliptical utterances, making relevant experiences difficult for an agent to retrieve. Context omitted from memory entries before indexing remains unavailable to downstream agentic search.</p>
-              <div class="insight-stat">10.1% <small>of 92,131 WorldMM triples contain unresolved references</small></div>
+              <p>Memory indices are typically built directly from short, independently generated captions and speech transcripts that omit the local context needed to resolve people, objects, actions, and elliptical utterances. Because context discarded before indexing remains unavailable to downstream agentic search, memory construction must use local context to produce self-contained atomic memory indices.</p>
+              <div class="insight-stats" aria-label="Memory construction failure statistics">
+                <div class="insight-stat"><strong>10.1%</strong><small>of WorldMM triples contain unresolved references</small></div>
+                <div class="insight-stat"><strong>17.4%</strong><small>of LoCoMo observations contain verbatim quotes</small></div>
+              </div>
             </article>
             <article class="insight">
               <h3>Insight 2: Retrieval must model temporal intent in addition to semantic relevance.</h3>
-              <p>Memory recall questions are inherently temporal, expressing recency (“last time”), habits (“usually”), or explicit time (“yesterday afternoon”). Existing systems nonetheless rank by semantic similarity and treat time as passive metadata, so the top-k fills with semantically plausible but temporally wrong evidence.</p>
-              <div class="insight-stat">&gt;76% / 48% <small>of EgoLifeQA / EgoMem questions contain temporal intent</small></div>
+              <p>Memory recall questions express temporal intent through recency (“last time”), habits (“usually”), or explicit time (“yesterday afternoon”). Existing systems rank primarily by semantic similarity and treat time as passive metadata, allowing semantically plausible but temporally incorrect indices to fill the top-k.</p>
+              <div class="insight-stats" aria-label="Temporal intent statistics">
+                <div class="insight-stat"><strong>76%</strong><small>of EgoLifeQA questions contain temporal intent</small></div>
+                <div class="insight-stat"><strong>48%</strong><small>of EgoMem questions contain temporal intent</small></div>
+              </div>
             </article>
           </div>
         </div>
