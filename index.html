@@ -18,7 +18,7 @@
   <link rel="icon" type="image/svg+xml" href="static/images/ai-glasses-icon.svg?v=1">
   <link rel="icon" type="image/png" sizes="32x32" href="static/images/ai-glasses-icon-32.png?v=1">
   <link rel="apple-touch-icon" sizes="180x180" href="static/images/ai-glasses-icon-180.png?v=1">
-  <link rel="stylesheet" href="static/css/site.css?v=21">
+  <link rel="stylesheet" href="static/css/site.css?v=23">
 </head>
 <body>
   <!--
@@ -85,6 +85,40 @@
         <h2 class="section-title">Abstract</h2>
         <div class="body-copy">
           <p>Long-horizon egocentric memory transforms continuous first-person video and audio into a searchable record of past experiences. We demonstrate two bottlenecks in existing systems: indices built from context-poor captions are unreliable for agentic search, while retrieval ignores a question's temporal intent. To address both bottlenecks, we introduce <span class="mono">EgoCITE</span> (Egocentric Context-augmented Indexing and Time-aware Evidence retrieval), a long-horizon agentic memory framework for egocentric QA. <span class="mono">EgoCITE</span> comprises three components. <span class="mono">EgoScheme</span> uses local multimodal context to turn fragmentary video captions and speech transcripts into self-contained atomic memory indices. <span class="mono">EgoIndex</span> organizes complementary action, activity, utterance, and conversation representations into searchable multi-view memory indices at multiple granularities. <span class="mono">EgoRetrv</span> combines semantic search with question-conditioned temporal relevance scoring and curation of retrieved evidence. We evaluate <span class="mono">EgoCITE</span> on EgoLifeQA, EgoMem, and EgoR1-Bench in terms of answer accuracy and target-event retrieval alignment. <span class="mono">EgoCITE</span> improves accuracy over agentic memory baselines by at least 4.4–14.2% while achieving 36× lower cost than long-context LLM agents.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section demo-section" id="demos">
+      <div class="container wide">
+        <h2 class="section-title">Demo Videos</h2>
+        <div class="demo-video-grid">
+          <article class="demo-video-card">
+            <header class="demo-video-header">
+              <h3>Shopping for tiramisu ingredients</h3>
+              <span>A1_JAKE · DAY1 · 17:32:00–17:33:00</span>
+            </header>
+            <div class="demo-video-frame">
+              <video controls playsinline preload="metadata" poster="static/images/demos/supermarket-poster.jpg" aria-label="EgoCITE annotations while shopping for tiramisu ingredients">
+                <source src="static/videos/egocite-supermarket.mp4" type="video/mp4">
+                <a href="static/videos/egocite-supermarket.mp4">Download the supermarket demo video.</a>
+              </video>
+            </div>
+            <p class="demo-video-caption"><strong>Context resolution:</strong> raw captions and elliptical speech omit what “it” refers to, while EgoCITE constructs a self-contained index for ordering the cake ingredients online.</p>
+          </article>
+          <article class="demo-video-card">
+            <header class="demo-video-header">
+              <h3>Unpacking utensils for cooking setup</h3>
+              <span>A2_ALICE · DAY1 · 13:38:00–13:39:00</span>
+            </header>
+            <div class="demo-video-frame">
+              <video controls playsinline preload="metadata" poster="static/images/demos/kitchen-poster.jpg" aria-label="EgoCITE annotations while unpacking utensils for a cooking setup">
+                <source src="static/videos/egocite-kitchen.mp4" type="video/mp4">
+                <a href="static/videos/egocite-kitchen.mp4">Download the kitchen demo video.</a>
+              </video>
+            </div>
+            <p class="demo-video-caption"><strong>Multi-view indexing:</strong> EgoCITE separates physical handling of cooking tools from spoken coordination while retaining the broader cooking-setup activity.</p>
+          </article>
         </div>
       </div>
     </section>
