@@ -109,7 +109,7 @@ table { border-collapse: collapse; }
 .body-copy p { margin: 0; }
 
 /* Annotated video demos */
-.demo-section { padding-block: 2.6rem; background: var(--blue-paper); }
+.demo-section { padding-block: 2.6rem; }
 .demo-video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid var(--line); background: #fff; }
 .demo-video-card { min-width: 0; }
 .demo-video-card + .demo-video-card { border-left: 1px solid var(--line); }
