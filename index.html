@@ -141,12 +141,11 @@
     <section class="section" id="results">
       <div class="container wide">
         <h2 class="section-title">Results</h2>
-        <p class="section-subtitle">We evaluate EgoCITE on EgoLifeQA, EgoMem, and EgoR1-Bench in terms of answer accuracy and target-event retrieval alignment.</p>
+        <p class="section-subtitle">We evaluate EgoCITE on EgoLifeQA, EgoMem, and EgoR1-Bench in terms of answer accuracy and target-event retrieval alignment (retrieval hit rate).</p>
         <div class="benchmark-summary">
           <div class="benchmark-intro">
-            <p class="benchmark-metrics-label"><strong>Metrics:</strong></p>
-            <p id="accuracy-definition"><strong>1. Accuracy:</strong> the percentage of questions for which the response agent selects the ground-truth choice from the candidate answers.</p>
-            <p id="hit-rate-definition"><strong>2. Retrieval Hit Rate:</strong> the percentage of questions whose retrieved memory indices temporally overlap the target time needed to answer the question, using a maximum retrieval budget of 15 memory indices for every baseline before question answering.</p>
+            <p id="accuracy-definition"><strong>Accuracy:</strong> the percentage of questions for which the response agent selects the ground-truth choice from the candidate answers.</p>
+            <p id="hit-rate-definition"><strong>Retrieval Hit Rate:</strong> the percentage of questions whose retrieved memory indices temporally overlap the target time needed to answer the question, using a maximum retrieval budget of 15 memory indices for every baseline before question answering.</p>
           </div>
           <div class="table-guide" aria-label="Table ranking guide">
             <span class="table-guide-label">Top values per metric</span>
@@ -186,8 +185,7 @@
 
         <div class="interactive-results" role="group" aria-label="EgoCITE result views">
           <div class="figure-switcher" data-figure-switcher hidden>
-            <div class="figure-switcher-head"><h3 class="figure-switcher-title" id="results-switcher-label">Explore EgoCITE results</h3></div>
-            <div class="figure-tabs" role="tablist" aria-labelledby="results-switcher-label" data-figure-tabs>
+            <div class="figure-tabs" role="tablist" aria-label="EgoCITE result views" data-figure-tabs>
               <button class="figure-tab" id="results-tab-1" type="button" role="tab" aria-selected="true" aria-controls="figure-1" tabindex="0">
                 <span class="figure-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 8 6-3 10H7L4 9l8-6Z"/><path d="m12 7 4 3-1.5 5H9.5L8 10l4-3Z"/><circle cx="12" cy="12" r="1"/></svg></span>
                 <span class="figure-tab-copy"><span class="figure-tab-title">Category accuracy</span></span>
