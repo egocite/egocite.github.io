@@ -143,10 +143,6 @@
         <h2 class="section-title">Results</h2>
         <p class="section-subtitle">We evaluate EgoCITE on EgoLifeQA, EgoMem, and EgoR1-Bench in terms of answer accuracy and target-event retrieval alignment (retrieval hit rate).</p>
         <div class="benchmark-summary">
-          <div class="benchmark-intro">
-            <p id="accuracy-definition"><strong>Accuracy:</strong> the percentage of questions for which the response agent selects the ground-truth choice from the candidate answers.</p>
-            <p id="hit-rate-definition"><strong>Retrieval Hit Rate:</strong> the percentage of questions whose retrieved memory indices temporally overlap the target time needed to answer the question, using a maximum retrieval budget of 15 memory indices for every baseline before question answering.</p>
-          </div>
           <div class="table-guide" aria-label="Table ranking guide">
             <span class="table-guide-label">Top values per metric</span>
             <span class="rank-key rank-key-first"><strong>1st</strong> Best</span>
@@ -154,7 +150,7 @@
             <span class="rank-key rank-key-third"><strong>3rd</strong> Third</span>
             <span class="table-scroll-hint">Scroll horizontally to inspect all benchmarks</span>
           </div>
-          <section class="table-scroll" aria-label="Benchmark accuracy and retrieval hit rate" aria-describedby="accuracy-definition hit-rate-definition" tabindex="0">
+          <section class="table-scroll" aria-label="Benchmark accuracy and retrieval hit rate" tabindex="0">
             <table class="benchmark-table">
               <caption class="sr-only">Answer accuracy and retrieval hit rate across EgoLifeQA, EgoMem, and EgoR1-Bench. The three highest distinct values in each accuracy and hit-rate metric are ranked.</caption>
               <colgroup>
