@@ -118,20 +118,20 @@
     <section class="section alt" id="motivation">
       <div class="container wide">
         <h2 class="section-title">Motivations</h2>
-        <p class="section-subtitle">We evaluate existing long-horizon egocentric memory systems and identify two fundamental limitations.</p>
+        <p class="section-subtitle">We analyze representative long-horizon egocentric memory systems and identify two failure cases: one in memory construction and one in retrieval.</p>
         <div class="container flush">
           <div class="two-column">
             <article class="insight">
-              <h3>Insight 1: Long-horizon egocentric agentic search is limited by what is indexed.</h3>
-              <p>Memory indices are typically built directly from short, independently generated captions and speech transcripts that omit the local context needed to resolve people, objects, actions, and elliptical utterances. Because context discarded before indexing remains unavailable to downstream agentic search, memory construction must use local context to produce self-contained atomic memory indices.</p>
+              <h3>Insight 1: Situational context must be resolved before memories are indexed.</h3>
+              <p>Existing systems typically derive their indices from short, independently generated captions and speech transcripts. These fragments omit the situational context needed to identify people, objects, actions, and elliptical utterances; no downstream structure or retrieval agent can recover context that was never resolved. Situation-aware construction must use local multimodal context to produce self-contained memories and organize complementary views at multiple granularities.</p>
               <div class="insight-stats" aria-label="Memory construction failure statistics">
-                <div class="insight-stat"><strong>10.1%</strong><small>of WorldMM triples contain unresolved references</small></div>
-                <div class="insight-stat"><strong>17.4%</strong><small>of LoCoMo observations contain verbatim quotes</small></div>
+                <div class="insight-stat"><strong>10%</strong><small>of WorldMM extracted entities contain unresolved pronouns</small></div>
+                <div class="insight-stat"><strong>17%</strong><small>of LoCoMo memory entries contain unresolved verbatim quotes</small></div>
               </div>
             </article>
             <article class="insight">
-              <h3>Insight 2: Retrieval must model temporal intent in addition to semantic relevance.</h3>
-              <p>Memory recall questions express temporal intent through recency (“last time”), habits (“usually”), or explicit time (“yesterday afternoon”). Existing systems rank primarily by semantic similarity and treat time as passive metadata, allowing semantically plausible but temporally incorrect indices to fill the top-k.</p>
+              <h3>Insight 2: Situational relevance requires question-conditioned temporal retrieval.</h3>
+              <p>Questions identify situations through temporal intent, including recency (“last time”), habits (“usually”), and explicit time (“yesterday afternoon”). Existing systems rank primarily by semantic similarity and treat time as passive metadata, filling the top-k with memories about the right activity but the wrong occurrence. Situation-aware retrieval must use a question's temporal intent to rank and curate evidence.</p>
               <div class="insight-stats" aria-label="Temporal intent statistics">
                 <div class="insight-stat"><strong>76%</strong><small>of EgoLifeQA questions contain temporal intent</small></div>
                 <div class="insight-stat"><strong>48%</strong><small>of EgoMem questions contain temporal intent</small></div>
@@ -140,8 +140,7 @@
           </div>
         </div>
         <figure class="paper-figure">
-          <a href="static/images/failure-case.png" target="_blank" rel="noreferrer"><img src="static/images/failure-case.png" alt="Failure cases in existing memory construction and retrieval systems." width="1772" height="874" loading="lazy"></a>
-          <figcaption><b>Figure 2.</b> The workflow and failure cases of existing memory construction and retrieval approaches.</figcaption>
+          <a href="static/images/failure-case.png?v=2" target="_blank" rel="noreferrer"><img src="static/images/failure-case.png?v=2" alt="Existing memory construction preserves unresolved context, while semantic-only retrieval ignores situationally relevant temporal cues." width="1854" height="676" loading="lazy"></a>
         </figure>
       </div>
     </section>
@@ -186,10 +185,10 @@
         </div>
 
         <figure class="retrieval-workflow" id="method-retrieval-panel" data-retrieval-workflow data-workflow-stage="drafting" role="tabpanel" aria-labelledby="method-tab-retrv workflow-title" tabindex="0" hidden>
-          <figcaption class="workflow-head">
+          <header class="workflow-head">
             <h3 class="workflow-title" id="workflow-title">EgoRetrv Time-Aware Atomic Memory Retrieval</h3>
             <p class="workflow-intro">EgoRetrv combines semantic search with question-conditioned temporal relevance scoring and curation of retrieved atomic memory indices. The drafting agent estimates the time query from the question using commonsense temporal knowledge and indices retrieved in prior rounds, updating it across rounds. The sampling agent orders the timestamped index pool chronologically and, for “last,” prioritizes the latest timestamps while retaining related indices needed to distinguish answer choices.</p>
-          </figcaption>
+          </header>
           <div class="workflow-stage-tabs" role="tablist" aria-label="Inspect an EgoRetrv agent">
             <button class="workflow-stage-tab" id="workflow-tab-drafting" type="button" role="tab" data-workflow-control="drafting" aria-selected="true" aria-controls="workflow-detail-drafting" tabindex="0">
               <span class="workflow-stage-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 20 4.2-1 10.7-10.7a2.2 2.2 0 0 0-3.1-3.1L5.1 15.9 4 20Z"/><path d="m14.8 6.2 3 3M5.1 15.9 8.2 19"/></svg></span><span class="workflow-stage-copy"><strong>Drafting agent</strong><span>High-recall, multi-round retrieval</span></span>
@@ -391,7 +390,7 @@
 
     <section class="section" id="results">
       <div class="container wide">
-        <h2 class="section-title">Experiments</h2>
+        <h2 class="section-title">Results</h2>
         <p class="section-subtitle">We evaluate EgoCITE on EgoLifeQA, EgoMem, and EgoR1-Bench in terms of answer accuracy and target-event retrieval alignment.</p>
         <div class="benchmark-summary">
           <div class="benchmark-intro">
