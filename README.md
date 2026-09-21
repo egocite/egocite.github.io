@@ -1,6 +1,6 @@
 # EgoCITE Project Page
 
-Academic project page for **EgoCITE: Context-Augmented Indexing and Time-Aware Retrieval for Long-Horizon Egocentric Memory**.
+Academic project page for **EgoCITE: Situation-Aware Context-Augmented Indexing and Retrieval for Long-Horizon Egocentric Memory**.
 
 - [Live website](https://egocite.github.io/)
 - Paper: arXiv link coming soon

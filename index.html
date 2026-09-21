@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EgoCITE | Long-Horizon Egocentric Memory</title>
-  <meta name="description" content="EgoCITE is a long-horizon agentic memory framework for egocentric QA that couples context-augmented indexing with time-aware retrieval.">
+  <meta name="description" content="EgoCITE is a situation-aware framework that contextualizes memory storage and retrieval for long-horizon egocentric question answering.">
   <meta name="robots" content="noindex">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="EgoCITE: Context-Augmented Indexing and Time-Aware Retrieval for Long-Horizon Egocentric Memory">
-  <meta property="og:description" content="EgoCITE is a long-horizon agentic memory framework for egocentric QA that couples context-augmented indexing with time-aware retrieval.">
-  <meta property="og:image" content="static/images/overview.png?v=4">
+  <meta property="og:title" content="EgoCITE: Situation-Aware Context-Augmented Indexing and Retrieval for Long-Horizon Egocentric Memory">
+  <meta property="og:description" content="EgoCITE is a situation-aware framework that contextualizes memory storage and retrieval for long-horizon egocentric question answering.">
+  <meta property="og:image" content="static/images/teaser.png?v=1">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#1452a3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,7 @@
     <header class="publication-header">
       <div class="container wide">
         <div class="publication-title-mark" aria-label="EgoCITE"><img class="publication-title-icon" src="static/images/ai-glasses-lockup.svg?v=1" width="144" height="88" alt=""><span class="project-name">Ego<span class="blue">C</span>I<span class="yellow">T</span>E</span></div>
-        <h1 class="publication-title">Context-Augmented Indexing and Time-Aware Retrieval for Long-Horizon Egocentric Memory</h1>
+        <h1 class="publication-title">Situation-Aware Context-Augmented Indexing and Retrieval for Long-Horizon Egocentric Memory</h1>
         <div class="publication-authors">Le Zhang<sup>1</sup>, Hao Chen<sup>2</sup>, Vlad Roznyatovskiy<sup>2</sup>, Jianzhong Zhang<sup>2</sup>, Ke Sun<sup>1</sup></div>
         <div class="publication-venue"><span><sup>1</sup> University of Michigan, Ann Arbor</span> <span><sup>2</sup> Samsung Research America</span></div>
         <div class="publication-links">
@@ -71,11 +71,11 @@
     <section class="teaser">
       <div class="container wide">
         <figure class="teaser-figure">
-          <a class="teaser-frame" href="static/images/overview.png?v=4" target="_blank" rel="noreferrer">
-            <img src="static/images/overview.png?v=4" alt="Overview of EgoCITE, from multimodal perception through context-augmented memory construction and time-aware retrieval to response." width="2007" height="637">
+          <a class="teaser-frame" href="static/images/teaser.png?v=1" target="_blank" rel="noreferrer">
+            <img src="static/images/teaser.png?v=1" alt="EgoCITE uses situationally rich context to resolve fragmented memories and combines situation-relevance time queries with semantic search." width="2056" height="789">
           </a>
           <span class="mobile-figure-note">Swipe to inspect the pipeline · Tap for full resolution</span>
-          <figcaption><b>Figure 1.</b> Overview of the pipeline: (1) Multimodal perception &amp; caption generation, (2) Context-augmented atomic memory construction, (3) Time-aware atomic memory index retrieval, and (4) Reasoning &amp; response. Click the figure for full resolution.</figcaption>
+          <figcaption><b>Figure 1.</b> <span class="mono">EgoCITE</span> situation-aware egocentric memory. Click the figure for full resolution.</figcaption>
         </figure>
       </div>
     </section>
@@ -84,7 +84,7 @@
       <div class="container wide">
         <h2 class="section-title">Abstract</h2>
         <div class="body-copy">
-          <p>Long-horizon egocentric memory transforms continuous first-person video and audio into a searchable record of past experiences. We demonstrate two bottlenecks in existing systems: indices built from context-poor captions are unreliable for agentic search, while retrieval ignores a question's temporal intent. To address both bottlenecks, we introduce <span class="mono">EgoCITE</span> (Egocentric Context-augmented Indexing and Time-aware Evidence retrieval), a long-horizon agentic memory framework for egocentric QA. <span class="mono">EgoCITE</span> comprises three components. <span class="mono">EgoScheme</span> uses local multimodal context to turn fragmentary video captions and speech transcripts into self-contained atomic memory indices. <span class="mono">EgoIndex</span> organizes complementary action, activity, utterance, and conversation representations into searchable multi-view memory indices at multiple granularities. <span class="mono">EgoRetrv</span> combines semantic search with question-conditioned temporal relevance scoring and curation of retrieved evidence. We evaluate <span class="mono">EgoCITE</span> on EgoLifeQA, EgoMem, and EgoR1-Bench in terms of answer accuracy and target-event retrieval alignment. <span class="mono">EgoCITE</span> improves accuracy over agentic memory baselines by at least 4.4–14.2% while achieving 36× lower cost than long-context LLM agents.</p>
+          <p>Long-horizon egocentric memory requires agents to recover relevant experiences from days of continuous first-person video and audio. Existing systems typically store isolated video captions or speech transcripts and retrieve them using raw user queries. We find that this pipeline loses the situational context needed for reliable memory search: stored fragments are not self-contained, complementary descriptions of the same experience remain disconnected, and queries often express temporal intent only implicitly. We introduce <span class="mono">EgoCITE</span>, a situation-aware framework that contextualizes both memory storage and retrieval for long-horizon egocentric question answering. <span class="mono">EgoScheme</span> uses local multimodal context to transform fragmentary captions and transcripts into self-contained atomic memories. <span class="mono">EgoIndex</span> organizes complementary action, activity, utterance, and conversation representations into multi-view, multi-granularity indices that capture each situation from different perspectives. <span class="mono">EgoRetrv</span> interprets the situation implied by a question through question-conditioned temporal relevance scoring, then iteratively retrieves and curates matching evidence. We evaluate <span class="mono">EgoCITE</span> on EgoLifeQA, EgoMem, and EgoR1-Bench using answer accuracy and target-event retrieval alignment. Across the three benchmarks, <span class="mono">EgoCITE</span> improves average answer accuracy over the strongest agentic memory baselines by 4.4–14.2% while achieving 36× lower normalized cost than long-context LLM agents.</p>
         </div>
       </div>
     </section>
@@ -937,7 +937,7 @@
         <div class="citation-card">
           <span class="citation-status">arXiv BibTeX</span>
           <pre class="citation-code"><code>@misc{egocite2026,
-  title  = {EgoCITE: Context-Augmented Indexing and Time-Aware Retrieval for Long-Horizon Egocentric Memory},
+  title  = {EgoCITE: Situation-Aware Context-Augmented Indexing and Retrieval for Long-Horizon Egocentric Memory},
   author = {Zhang, Le and Chen, Hao and Roznyatovskiy, Vlad and Zhang, Jianzhong and Sun, Ke},
   year   = {2026},
   eprint = {2608.12627},

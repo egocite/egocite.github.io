@@ -43,7 +43,7 @@ The page is a static academic project website hosted on GitHub Pages. Readers ma
 
 - Paper: `/home/zle/longmemory/EgoContext___ACL.pdf`
 - Updated overview: `/home/zle/longmemory/overview (2).pdf`
-- Web overview image: `static/images/overview.png`
+- Web teaser image: `static/images/teaser.png`
 - Failure-case figure: `static/images/failure-case.png`
 - Experiment data: `static/data/results.json`
 - Grounded EgoRetrv trace examples and score replays are embedded in `index.html`.
