@@ -660,7 +660,130 @@
           </div>
         </section>
         <section class="examples-type-panel" id="examples-panel-retrv" role="tabpanel" aria-labelledby="examples-tab-retrv" hidden>
-          <div data-retrieval-examples-mount></div>
+        <section class="retrieval-demo" id="egoretrv-traces" data-retrieval-examples aria-labelledby="examples-tab-retrv">
+          <div class="retrieval-example-tabs" role="tablist" aria-label="Select an EgoRetrv trace example">
+            <button class="retrieval-tab" id="retrieval-tab-cupcakes" type="button" role="tab" aria-selected="true" aria-controls="retrieval-panel-cupcakes" tabindex="0">
+              <span class="retrieval-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 12h10l-1.3 8H8.3z"/><path d="M7 12c0-1.6 1.2-2.8 2.8-2.8 0-2 1-3.4 2.2-3.4s2.2 1.4 2.2 3.4c1.6 0 2.8 1.2 2.8 2.8Z"/><path d="M10 15h4"/></svg></span><span class="retrieval-tab-label">First cupcake event</span><span class="retrieval-tab-shift">#24 &rarr; #4</span>
+            </button>
+            <button class="retrieval-tab" id="retrieval-tab-escalator" type="button" role="tab" aria-selected="false" aria-controls="retrieval-panel-escalator" tabindex="-1">
+              <span class="retrieval-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 19h5v-4h4v-4h4V7h5"/><path d="m16 3 5 4-5 4"/></svg></span><span class="retrieval-tab-label">Last escalator event</span><span class="retrieval-tab-shift">#21 &rarr; #4</span>
+            </button>
+            <button class="retrieval-tab" id="retrieval-tab-milk" type="button" role="tab" aria-selected="false" aria-controls="retrieval-panel-milk" tabindex="-1">
+              <span class="retrieval-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3h7l3 5v12H6V8z"/><path d="M8 3v5h10M6 8h5l2-5"/><path d="M10 13c1.5 1.1 1.5 2.3 0 3.4-1.5-1.1-1.5-2.3 0-3.4Z"/></svg></span><span class="retrieval-tab-label">Last milk appearance</span><span class="retrieval-tab-shift">#26 &rarr; #8</span>
+            </button>
+          </div>
+
+          <article class="retrieval-panel" id="retrieval-panel-cupcakes" role="tabpanel" aria-labelledby="retrieval-tab-cupcakes" tabindex="0">
+            <blockquote class="trace-question"><span class="trace-question-label">Question</span><span class="trace-question-text">What was I doing the first time Tasha made cupcakes?</span><time class="question-time">Asked at DAY6 14290806</time></blockquote>
+            <div class="query-grid" aria-label="Drafting-agent query">
+              <div class="query-field"><span class="query-field-label">Memory view query</span><code>Action</code></div>
+              <div class="query-field"><span class="query-field-label">Semantic query</span><code>I fry eggs</code></div>
+              <div class="query-field"><span class="query-field-label">Time query</span><code>DAY1 19000000 to DAY1 20300000</code></div>
+            </div>
+            <div class="rank-shift" aria-label="Target-overlapping index moves from rank 24 to rank 4">
+              <div class="rank-state"><span class="rank-number">#24</span><span class="rank-copy"><strong>Semantic only</strong><span>Outside action top-20</span></span></div>
+              <span class="rank-arrow" aria-hidden="true"><strong>&rarr;</strong><span>Up 20</span></span>
+              <div class="rank-state"><span class="rank-copy"><strong>Time-aware</strong><span>Inside action top-20</span></span><span class="rank-number">#4</span></div>
+            </div>
+            <div class="ranking-comparison">
+              <section class="ranking-column" aria-label="Ranking without temporal relevance">
+                <header class="ranking-head"><strong>Without temporal relevance</strong><span>Semantic relevance</span></header>
+                <div class="ranking-list">
+                  <div class="ranking-row"><span class="ranking-index">1</span><span class="ranking-memory"><time>DAY4 11030500&ndash;11033000</time><span>I fry the eggs in the frying pan</span></span><span class="ranking-score">0.758<small>semantic</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">2</span><span class="ranking-memory"><time>DAY1 19533000&ndash;19535900</time><span>I agree that we should fry the egg</span></span><span class="ranking-score">0.686<small>semantic</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">3</span><span class="ranking-memory"><time>DAY4 11083100&ndash;11085800</time><span>I say that the eggs are fried eggs</span></span><span class="ranking-score">0.680<small>semantic</small></span></div>
+                  <div class="ranking-row is-gap" aria-hidden="true">&middot;&middot;&middot;</div>
+                  <div class="ranking-row is-target"><span class="ranking-index">24</span><span class="ranking-memory"><time>DAY1 19460100&ndash;19463000 <strong class="gt-badge">GT overlap</strong></time><span>I crack eggs into the pan</span></span><span class="ranking-score">0.594<small>semantic</small></span></div>
+                </div>
+              </section>
+              <section class="ranking-column with-time" aria-label="Ranking with EgoRetrv temporal relevance">
+                <header class="ranking-head"><strong>With temporal relevance</strong><span>Semantic relevance &times; time relevance = score</span></header>
+                <div class="ranking-list">
+                  <div class="ranking-row"><span class="ranking-index">1</span><span class="ranking-memory"><time>DAY1 19533000&ndash;19535900</time><span>I agree that we should fry the egg</span></span><span class="ranking-score ranking-score-formula"><span>0.686 &times; 1.000 = 0.686</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">2</span><span class="ranking-memory"><time>DAY1 14003100&ndash;14010000</time><span>I say that preserved eggs can be fried</span></span><span class="ranking-score ranking-score-formula"><span>0.635 &times; 0.951 = 0.604</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">3</span><span class="ranking-memory"><time>DAY1 19533000&ndash;19535900</time><span>Lucia suggests that we fry the egg</span></span><span class="ranking-score ranking-score-formula"><span>0.599 &times; 1.000 = 0.599</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row is-target"><span class="ranking-index">4</span><span class="ranking-memory"><time>DAY1 19460100&ndash;19463000 <strong class="gt-badge">GT overlap</strong></time><span>I crack eggs into the pan</span></span><span class="ranking-score ranking-score-formula"><span>0.594 &times; 1.000 = 0.594</span><small>semantic &times; time relevance</small></span></div>
+                </div>
+              </section>
+            </div>
+            <p class="trace-insight"><strong>Why the rank changes:</strong> The target lies inside the requested time window and keeps full temporal relevance, while the DAY4 semantic match is downweighted from 0.758 to 0.588 and falls from #1 to #5; the target consequently enters the action view's top-20 retrieval budget.</p>
+          </article>
+
+          <article class="retrieval-panel" id="retrieval-panel-escalator" role="tabpanel" aria-labelledby="retrieval-tab-escalator" tabindex="0" hidden>
+            <blockquote class="trace-question"><span class="trace-question-label">Question</span><span class="trace-question-text">Who was I with the last time I stood on the escalator in the supermarket?</span><time class="question-time">Asked at DAY5 16062618</time></blockquote>
+            <div class="query-grid" aria-label="Drafting-agent query">
+              <div class="query-field"><span class="query-field-label">Memory view query</span><code>Activity</code></div>
+              <div class="query-field"><span class="query-field-label">Semantic query</span><code>go supermarket escalator</code></div>
+              <div class="query-field"><span class="query-field-label">Time query</span><code>DAY3 17050000 to DAY3 17200000</code></div>
+            </div>
+            <div class="rank-shift" aria-label="Target-overlapping index moves from rank 21 to rank 4">
+              <div class="rank-state"><span class="rank-number">#21</span><span class="rank-copy"><strong>Semantic only</strong><span>Outside activity top-10</span></span></div>
+              <span class="rank-arrow" aria-hidden="true"><strong>&rarr;</strong><span>Up 17</span></span>
+              <div class="rank-state"><span class="rank-copy"><strong>Time-aware</strong><span>Inside activity top-10</span></span><span class="rank-number">#4</span></div>
+            </div>
+            <div class="ranking-comparison">
+              <section class="ranking-column" aria-label="Ranking without temporal relevance">
+                <header class="ranking-head"><strong>Without temporal relevance</strong><span>Semantic relevance</span></header>
+                <div class="ranking-list">
+                  <div class="ranking-row"><span class="ranking-index">1</span><span class="ranking-memory"><time>DAY3 16373100&ndash;16385800</time><span>Shure, Tasha, Alice, and I head to Hema supermarket for barbecue shopping from the mall escalator</span></span><span class="ranking-score">0.501<small>semantic</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">2</span><span class="ranking-memory"><time>DAY5 15511800&ndash;15523000</time><span>Jack, Tasha, Lucia, and I head into the two-floor supermarket to inspect its selection</span></span><span class="ranking-score">0.462<small>semantic</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">3</span><span class="ranking-memory"><time>DAY1 18263000&ndash;18295300</time><span>I prepare the group to leave with carts, bags, and bills at the supermarket exit</span></span><span class="ranking-score">0.453<small>semantic</small></span></div>
+                  <div class="ranking-row is-gap" aria-hidden="true">&middot;&middot;&middot;</div>
+                  <div class="ranking-row is-target"><span class="ranking-index">21</span><span class="ranking-memory"><time>DAY3 17130200&ndash;17163000 <strong class="gt-badge">GT overlap</strong></time><span>Shure, Tasha, Alice, Lucia, Katrina, and I carry the groceries out of Hema toward the upper mall exit</span></span><span class="ranking-score">0.373<small>semantic</small></span></div>
+                </div>
+              </section>
+              <section class="ranking-column with-time" aria-label="Ranking with EgoRetrv temporal relevance">
+                <header class="ranking-head"><strong>With temporal relevance</strong><span>Semantic relevance &times; time relevance = score</span></header>
+                <div class="ranking-list">
+                  <div class="ranking-row"><span class="ranking-index">1</span><span class="ranking-memory"><time>DAY3 16373100&ndash;16385800</time><span>Shure, Tasha, Alice, and I head to Hema supermarket for barbecue shopping from the mall escalator</span></span><span class="ranking-score ranking-score-formula"><span>0.501 &times; 0.996 = 0.499</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">2</span><span class="ranking-memory"><time>DAY3 15423000&ndash;15452900</time><span>I walk with Tasha toward the mall through the residential streets after leaving the supermarket</span></span><span class="ranking-score ranking-score-formula"><span>0.401 &times; 0.987 = 0.396</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">3</span><span class="ranking-memory"><time>DAY3 17000000&ndash;17022700</time><span>Lucia, Tasha, Shure, Alice, Katrina, and I compare yogurt, douzhi, bread, and grocery prices in the supermarket aisle</span></span><span class="ranking-score ranking-score-formula"><span>0.385 &times; 1.000 = 0.385</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row is-target"><span class="ranking-index">4</span><span class="ranking-memory"><time>DAY3 17130200&ndash;17163000 <strong class="gt-badge">GT overlap</strong></time><span>Shure, Tasha, Alice, Lucia, Katrina, and I carry the groceries out of Hema toward the upper mall exit</span></span><span class="ranking-score ranking-score-formula"><span>0.373 &times; 1.000 = 0.373</span><small>semantic &times; time relevance</small></span></div>
+                </div>
+              </section>
+            </div>
+            <p class="trace-insight"><strong>Why the rank changes:</strong> The answer-bearing group activity lies inside the drafting agent's “last time” window and keeps full temporal relevance; downweighting out-of-window supermarket matches moves it 17 places into the activity view's top-10 retrieval budget.</p>
+          </article>
+
+          <article class="retrieval-panel" id="retrieval-panel-milk" role="tabpanel" aria-labelledby="retrieval-tab-milk" tabindex="0" hidden>
+            <blockquote class="trace-question"><span class="trace-question-label">Question</span><span class="trace-question-text">When was the last time Wonky's Milk appeared in front of me?</span><time class="question-time">Asked at DAY7 13200913</time></blockquote>
+            <div class="query-grid" aria-label="Drafting-agent query">
+              <div class="query-field"><span class="query-field-label">Memory view query</span><code>Action</code></div>
+              <div class="query-field"><span class="query-field-label">Semantic query</span><code>milk carton</code></div>
+              <div class="query-field"><span class="query-field-label">Time query</span><code>DAY1 11000000 to DAY1 16000000</code></div>
+            </div>
+            <div class="rank-shift" aria-label="Target-overlapping index moves from rank 26 to rank 8">
+              <div class="rank-state"><span class="rank-number">#26</span><span class="rank-copy"><strong>Semantic only</strong><span>Outside action top-20</span></span></div>
+              <span class="rank-arrow" aria-hidden="true"><strong>&rarr;</strong><span>Up 18</span></span>
+              <div class="rank-state"><span class="rank-copy"><strong>Time-aware</strong><span>Inside action top-20</span></span><span class="rank-number">#8</span></div>
+            </div>
+            <div class="ranking-comparison">
+              <section class="ranking-column" aria-label="Ranking without temporal relevance">
+                <header class="ranking-head"><strong>Without temporal relevance</strong><span>Semantic relevance</span></header>
+                <div class="ranking-list">
+                  <div class="ranking-row"><span class="ranking-index">1</span><span class="ranking-memory"><time>DAY3 21350300&ndash;21353000</time><span>I move the milk carton on the table</span></span><span class="ranking-score">0.585<small>semantic</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">2</span><span class="ranking-memory"><time>DAY2 11180000&ndash;11182700</time><span>I place another carton of milk near the table</span></span><span class="ranking-score">0.580<small>semantic</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">3</span><span class="ranking-memory"><time>DAY5 20080000&ndash;20083000</time><span>Tasha picks up a carton of milk from the table</span></span><span class="ranking-score">0.546<small>semantic</small></span></div>
+                  <div class="ranking-row is-gap" aria-hidden="true">&middot;&middot;&middot;</div>
+                  <div class="ranking-row is-target"><span class="ranking-index">26</span><span class="ranking-memory"><time>DAY1 14103400&ndash;14105700 <strong class="gt-badge">GT overlap</strong></time><span>I put the Wangzai milk on top of the big box</span></span><span class="ranking-score">0.466<small>semantic</small></span></div>
+                </div>
+              </section>
+              <section class="ranking-column with-time" aria-label="Ranking with EgoRetrv temporal relevance">
+                <header class="ranking-head"><strong>With temporal relevance</strong><span>Semantic relevance &times; time relevance = score</span></header>
+                <div class="ranking-list">
+                  <div class="ranking-row"><span class="ranking-index">1</span><span class="ranking-memory"><time>DAY2 11180000&ndash;11182700</time><span>I place another carton of milk near the table</span></span><span class="ranking-score ranking-score-formula"><span>0.580 &times; 0.936 = 0.543</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">2</span><span class="ranking-memory"><time>DAY2 11190100&ndash;11193000</time><span>I place a carton of milk on one side of the table</span></span><span class="ranking-score ranking-score-formula"><span>0.542 &times; 0.936 = 0.507</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row"><span class="ranking-index">3</span><span class="ranking-memory"><time>DAY2 11180000&ndash;11182700</time><span>I move a carton of milk</span></span><span class="ranking-score ranking-score-formula"><span>0.541 &times; 0.936 = 0.506</span><small>semantic &times; time relevance</small></span></div>
+                  <div class="ranking-row is-gap" aria-hidden="true">&middot;&middot;&middot;</div>
+                  <div class="ranking-row is-target"><span class="ranking-index">8</span><span class="ranking-memory"><time>DAY1 14103400&ndash;14105700 <strong class="gt-badge">GT overlap</strong></time><span>I put the Wangzai milk on top of the big box</span></span><span class="ranking-score ranking-score-formula"><span>0.466 &times; 1.000 = 0.466</span><small>semantic &times; time relevance</small></span></div>
+                </div>
+              </section>
+            </div>
+            <p class="trace-insight"><strong>Why the rank changes:</strong> The target lies inside the DAY1 time window and keeps full temporal relevance, while the closest DAY3 milk match is downweighted from 0.585 to 0.440 and falls from #1 to #11; the target consequently enters the action view's top-20 retrieval budget.</p>
+          </article>
+
+          <p class="sr-only" data-retrieval-status aria-live="polite">Showing First cupcake event. The target-overlapping index moves from rank 24 to rank 4.</p>
+        </section>
         </section>
       </div>
     </section>
@@ -691,7 +814,7 @@
   </footer>
 
   <script src="static/vendor/chart.umd.min.js" defer></script>
-  <script src="static/js/retrieval-examples.js?v=5" defer></script>
+  <script src="static/js/retrieval-examples.js?v=6" defer></script>
   <script src="static/js/results-charts.js?v=16" defer></script>
 </body>
 </html>

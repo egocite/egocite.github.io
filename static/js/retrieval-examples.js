@@ -1,14 +1,4 @@
 (() => {
-  const root = document.querySelector("[data-retrieval-examples]");
-  if (!root) return;
-
-  const mount = document.querySelector("[data-retrieval-examples-mount]");
-  if (mount) mount.append(root);
-  root.hidden = false;
-  root.removeAttribute("role");
-  root.removeAttribute("tabindex");
-  root.setAttribute("aria-labelledby", "examples-tab-retrv");
-
   const typeTabs = [...document.querySelectorAll("[data-example-type-tab]")];
   const typePanels = [...document.querySelectorAll(".examples-type-panel")];
 
@@ -80,6 +70,9 @@
 
   initializeNestedTabs("[data-index-examples]", '.index-example-tabs [role="tab"]', '.index-example-panel[role="tabpanel"]');
   initializeNestedTabs("[data-scheme-examples]", '.scheme-example-tabs [role="tab"]', '.scheme-example-panel[role="tabpanel"]');
+
+  const root = document.querySelector("[data-retrieval-examples]");
+  if (!root) return;
 
   const tabs = [...root.querySelectorAll('[role="tab"]')];
   const panels = [...root.querySelectorAll('[role="tabpanel"]')];
