@@ -234,6 +234,18 @@ figcaption b { color: var(--ink); }
 .paper-figure { margin: 1.5rem 0 0; }
 .paper-figure a { display: block; border: 1px solid var(--line); background: #fff; }
 .paper-figure img { width: 100%; }
+.method-summary {
+  max-width: 1080px;
+  margin: 1rem auto 0;
+  padding-left: 1.35rem;
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: .98rem;
+  line-height: 1.55;
+}
+.method-summary li + li { margin-top: .45rem; }
+.method-summary li::marker { color: var(--blue); }
+.method-summary strong { color: var(--blue-dark); font-family: var(--sans); }
 
 /* Method selector */
 .method-grid {
