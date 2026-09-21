@@ -244,8 +244,11 @@ figcaption b { color: var(--ink); }
   line-height: 1.55;
 }
 .method-summary li + li { margin-top: .45rem; }
-.method-summary li::marker { color: var(--blue); }
-.method-summary strong { color: var(--blue-dark); font-family: var(--sans); }
+.method-summary li:nth-child(1) { --component-color: var(--blue); }
+.method-summary li:nth-child(2) { --component-color: var(--teal-dark); }
+.method-summary li:nth-child(3) { --component-color: #b34700; }
+.method-summary li::marker { color: var(--component-color); }
+.method-summary strong { color: var(--component-color); font-family: var(--sans); }
 
 /* Method selector */
 .method-grid {
