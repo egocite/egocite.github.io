@@ -123,7 +123,7 @@
           <div class="two-column">
             <article class="insight">
               <h3>Insight 1: Situational context must be resolved before memories are indexed.</h3>
-              <p>Existing systems typically derive their indices from short, independently generated captions and speech transcripts. These fragments omit the situational context needed to identify people, objects, actions, and elliptical utterances; no downstream structure or retrieval agent can recover context that was never resolved. Situation-aware construction must use local multimodal context to produce self-contained memories and organize complementary views at multiple granularities.</p>
+              <p>Short, independently generated captions and transcripts omit the context needed to resolve people, objects, actions, and elliptical speech. Situation-aware construction must resolve this context before indexing and organize self-contained memories across views and granularities.</p>
               <div class="insight-stats" aria-label="Memory construction failure statistics">
                 <div class="insight-stat"><strong>10%</strong><small>of WorldMM extracted entities contain unresolved pronouns</small></div>
                 <div class="insight-stat"><strong>17%</strong><small>of LoCoMo memory entries contain unresolved verbatim quotes</small></div>
@@ -131,7 +131,7 @@
             </article>
             <article class="insight">
               <h3>Insight 2: Situational relevance requires question-conditioned temporal retrieval.</h3>
-              <p>Questions identify situations through temporal intent, including recency (“last time”), habits (“usually”), and explicit time (“yesterday afternoon”). Existing systems rank primarily by semantic similarity and treat time as passive metadata, filling the top-k with memories about the right activity but the wrong occurrence. Situation-aware retrieval must use a question's temporal intent to rank and curate evidence.</p>
+              <p>Questions often imply temporal intent through cues such as “last time,” “usually,” or “yesterday afternoon.” Situation-aware retrieval must use these cues alongside semantic similarity to rank the right occurrence.</p>
               <div class="insight-stats" aria-label="Temporal intent statistics">
                 <div class="insight-stat"><strong>76%</strong><small>of EgoLifeQA questions contain temporal intent</small></div>
                 <div class="insight-stat"><strong>48%</strong><small>of EgoMem questions contain temporal intent</small></div>
